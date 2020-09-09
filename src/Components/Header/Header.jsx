@@ -23,7 +23,7 @@ const Header = () => {
           <div className={styles.HeaderRight_PersonInfo}>
             <h2 className={styles.PersonInfo_Name}>Ruslan</h2>
             <div className={styles.PersonInfo_Photo}>
-              <img className={styles.PersonInfo_Photo_thumb}src={userIcon}/>
+              <img className={styles.PersonInfo_Photo_thumb} src={userIcon}/>
             </div>
           </div>
         </div>
