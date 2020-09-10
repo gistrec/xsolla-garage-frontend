@@ -1,8 +1,8 @@
 .CalendarAndHello {
-    width: 335px;
     height: 579px;
-    margin-left: 200px;
-    padding-top: 40px;
-    padding-right: 16px;
-    border-right: 1px solid rgba(0, 36, 77, 0.08); 
+    margin-left: 14%;
+    padding-top: 3%;
+    padding-right: 1%;
+    width: 23%;
+    /*border-right: 1px solid rgba(0, 36, 77, 0.08); */
 }

@@ -1,0 +1,42 @@
+.WS_header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 36, 77, 0.08);
+}
+
+.WS_title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 40px;
+    /* Black */
+    color: #00244D;
+}
+
+.Btn {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    width: 143px;
+    height: 40px;
+
+    background: #0073F7;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    /* White */
+    color: #FFFFFF;
+}
+
+.WS_wrapper {
+    margin: 40px 32px 16px 32px;
+    width: 100%;
+}
+
+.WS_Space {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
