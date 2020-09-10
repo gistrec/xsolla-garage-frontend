@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.Header {
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    background: #FFFFFF;
+    box-shadow: 0 10px 40px rgba(0, 115, 247, 0.01), 0 6px 5px rgba(0, 115, 247, 0.03);
+}
+.HeaderWrapper {
+    /*max-width: 1060px;*/
+    margin: 0 200px;
+    padding: 12px 15px;
+}
+
+.HeaderWrapperTwo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.HeaderTitle {
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+.HeaderTitlePic {
+display: flex;
+align-items: center;
+}
+
+.HeaderTitle_thumb {
+padding-right: 16px;
+}
+
+.HeaderTitleNameApp {
+font-size: 18px;
+line-height: 24px;
+text-transform: uppercase
+}
+
+.HeaderRight {
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+.HeaderRightBell {
+    padding-right: 16px;
+}
+
+.HeaderRightBell:hover {
+fill:red !important;
+cursor:pointer;
+}
+
+.HeaderRight_PersonInfo{
+display: flex;
+
+}
+
+.PersonInfo_Name {
+    font-family: Graphik LCG;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    /* identical to box height, or 160% */
+
+    color: #00244D;
+}
+
+.PersonInfo_Photo{
+padding-left: 12px;
+}
+
+.PersonInfo_Photo_thumb{
+
+}
+
+@media screen and (max-width: 1000px) {
+    .HeaderWrapper {
+        margin: 0;
+    }
+
+    .HeaderWrapperTwo {
+        display: flex;
+        flex-wrap: nowrap;
+
+    }
+}
+
+
+@media screen and (max-width: 335px) {
+    .Header {
+        min-width: 335px;
+    }
+
+    .HeaderRight {
+        padding-left: 10px;
+    }
+
+    .HeaderTitleNameApp {
+        font-size: 15px;
+        line-height: 20px;
+    }
+}
