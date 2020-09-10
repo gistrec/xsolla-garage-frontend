@@ -1,3 +1,5 @@
+@import url(//db.onlinewebfonts.com/c/ff43ca80668e47a1b1208ba9aed65ad2?family=Sharp+Grotesk+Medium+20);
+
 * {
     margin: 0;
     padding: 0;
@@ -39,9 +41,10 @@ padding-right: 16px;
 }
 
 .HeaderTitleNameApp {
-font-size: 18px;
-line-height: 24px;
-text-transform: uppercase
+    font-family: "Sharp Grotesk Medium 20", sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase
 }
 
 .HeaderRight {
