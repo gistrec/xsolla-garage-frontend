@@ -7,7 +7,7 @@ const WorkspaceHeader = () => {
       <div className={styles.WS_wrapper}>
         <div className={styles.WS_Space}>
           <h2 className={styles.WS_title}>Tasks</h2>
-          <button className={styles.Btn}>NEW TASK</button>
+          <button className={styles.Btn}>+ NEW TASK</button>
         </div>
       </div>
     </div>

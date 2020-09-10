@@ -36,8 +36,9 @@
 }
 
 .DelIconContainer:hover {
-    color: red;
-    cursor: pointer;
+    fill: #3e3e3e !important;
+    transition: fill 0.3s;
+    cursor:pointer;
 }
 
 /*@media screen and (max-width: 1366px) {*/
