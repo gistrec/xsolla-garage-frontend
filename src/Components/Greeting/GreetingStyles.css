@@ -1,8 +1,9 @@
 * {
     margin: 0;
     padding: 0;
+    font-size: 15px;
+    line-height: 24px;
 }
-
 
 .greeting {
     height: 291px;
@@ -10,7 +11,7 @@
     background-color: #FFFFFF;
     box-shadow: 10px 40px rgba(0, 115, 247, 0.01);
     border-radius: 8px;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .planner {
@@ -29,5 +30,4 @@
     max-width: 100%;
     height: auto;
 }
-
 

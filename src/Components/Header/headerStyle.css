@@ -1,3 +1,5 @@
+@import url(//db.onlinewebfonts.com/c/ff43ca80668e47a1b1208ba9aed65ad2?family=Sharp+Grotesk+Medium+20);
+
 * {
     margin: 0;
     padding: 0;
@@ -39,15 +41,16 @@ padding-right: 16px;
 }
 
 .HeaderTitleNameApp {
-font-size: 18px;
-line-height: 24px;
-text-transform: uppercase
+    font-family: "Sharp Grotesk Medium 20", sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase
 }
 
 .HeaderRight {
-display: flex;
-flex-direction: row;
-align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .HeaderRightBell {
@@ -55,17 +58,17 @@ align-items: center;
 }
 
 .HeaderRightBell:hover {
-fill:red !important;
-cursor:pointer;
+    fill: #3e3e3e !important;
+    transition: fill 0.3s;
+    cursor:pointer;
 }
 
 .HeaderRight_PersonInfo{
-display: flex;
-
+    display: flex;
 }
 
 .PersonInfo_Name {
-    font-family: Graphik LCG;
+    font-family: "Graphik", sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -74,7 +77,6 @@ display: flex;
     display: flex;
     align-items: center;
     /* identical to box height, or 160% */
-
     color: #00244D;
 }
 
