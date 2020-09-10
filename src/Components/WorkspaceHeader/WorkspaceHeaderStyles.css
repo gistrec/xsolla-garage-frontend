@@ -6,7 +6,7 @@
 
 .WS_title {
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 30px;
     line-height: 40px;
     /* Black */
@@ -28,6 +28,12 @@
     border: none;
     /* White */
     color: #FFFFFF;
+    transition: 0.3s;
+}
+
+.Btn:hover {
+    background: #004df0;
+    cursor: pointer;
 }
 
 .WS_wrapper {

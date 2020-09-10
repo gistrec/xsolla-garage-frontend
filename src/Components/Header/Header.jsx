@@ -22,7 +22,7 @@ const Header = () => {
               </svg>
             </div>
             <div className={styles.HeaderRight_PersonInfo}>
-              <h2 className={styles.PersonInfo_Name}>Ruslan</h2>
+              <h2 className={styles.PersonInfo_Name}>User</h2>
               <div className={styles.PersonInfo_Photo}>
                 <img className={styles.PersonInfo_Photo_thumb} src={userIcon}/>
               </div>

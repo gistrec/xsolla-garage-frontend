@@ -31,3 +31,11 @@
     height: auto;
 }
 
+.helloUser {
+    font-weight: bold;
+}
+
+.currentTasks {
+    margin-top: 4px;
+}
+
