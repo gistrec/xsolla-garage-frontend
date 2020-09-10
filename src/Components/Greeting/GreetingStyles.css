@@ -5,9 +5,8 @@
 
 
 .greeting {
-    width: 335px;
     height: 291px;
-    padding: 16px 24px 24px 24px;
+    padding: 5% 7% 7% 7%;
     background-color: #FFFFFF;
     box-shadow: 10px 40px rgba(0, 115, 247, 0.01);
     border-radius: 8px;
@@ -16,6 +15,19 @@
 
 .planner {
     display: block;
-    margin: 0 auto;
+    height: 37%;
+    margin-bottom: 7%;
 }
+
+.ImageContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7%;
+}
+
+.grImage {
+    max-width: 100%;
+    height: auto;
+}
+
 

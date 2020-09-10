@@ -1,9 +1,8 @@
 import { hot } from 'react-hot-loader/root'
 import React, { Fragment } from 'react'
 import Header from './Components/Header/Header'
-// import Greeting from './Components/Greeting/Greeting'
-// import CalendarReact from './Components/Calendar/CalendarReact'
 import CalendarAndHello from './Components/CalendarAndHello/CalendarAndHello'
+import Main from './Components/Main/Main'
 
 class App extends React.Component {
   render () {
@@ -11,6 +10,7 @@ class App extends React.Component {
       <Fragment>
         <Header/>
         <CalendarAndHello/>
+        <Main/>
       </Fragment>
     )
   }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styles from './headerStyle.css'
 import logo from './Logo.png'
 import userIcon from './userIcon.png'

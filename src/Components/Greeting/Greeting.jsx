@@ -6,7 +6,9 @@ const Greeting = () => {
   return (
     <Fragment>
       <div className={styles.greeting}>
-        <img src={planner} className={styles.planner}/>
+        <div className={styles.ImageContainer}>
+          <img src={planner} className={styles.grImage}/>
+        </div>
         <p>Hi, User</p>
         <p>You have a lot of tasks to do!</p>
       </div>
