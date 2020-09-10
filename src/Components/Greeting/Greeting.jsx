@@ -7,8 +7,8 @@ const Greeting = () => {
     <Fragment>
       <div className={styles.greeting}>
         <img src={planner} className={styles.planner}/>
-        <p>Hi, User</p>
-        <p>You have a lot of tasks to do!</p>
+        <p className={styles.title}>Hi, User</p>
+        <p className={styles.tasksList}>You have a lot of tasks to do!</p>
       </div>
     </Fragment>
   )
