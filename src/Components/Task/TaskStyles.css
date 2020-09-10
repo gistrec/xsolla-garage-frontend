@@ -1,0 +1,46 @@
+.TaskContainer {
+    /*width: 624px;*/
+    background: #FFFFFF;
+    box-shadow: 0 10px 40px rgba(0, 115, 247, 0.08), 0px 4px 12px rgba(0, 115, 247, 0.04);
+    border-radius: 8px;
+    /*height: 198px;*/
+}
+
+.TaskInput {
+    width: 100%;
+    height: 80px;
+    outline: none;
+
+    border: 1px solid rgba(0, 36, 77, 0.08);
+    background: #FCFDFF;
+    border-radius: 8px 8px 0 0;
+}
+
+.TaskActions {
+    height: 48px;
+    display: flex;
+}
+
+.Wrapper {
+    margin: 24px 32px 32px 32px;
+    /*width: 100%;*/
+}
+
+.DelAndSave {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    order: 1;
+    margin-left: auto;
+    padding-right: 12px;
+}
+
+.DelIconContainer:hover {
+    color: red;
+    cursor: pointer;
+}
+
+/*@media screen and (max-width: 1366px) {*/
+/*    */
+/*}*/
+

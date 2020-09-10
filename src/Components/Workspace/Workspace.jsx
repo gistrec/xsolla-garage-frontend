@@ -1,11 +1,17 @@
 import React, { Fragment } from 'react'
 import styles from './WorkspaceStyles.css'
+import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader'
+import Task from '../Task/Task'
 
 const Workspace = () => {
   return (
     <Fragment>
-      <div className={styles.workspace}>
-      </div>
+      <form>
+        <div className={styles.workspace}>
+          <WorkspaceHeader/>
+          <Task/>
+        </div>
+      </form>
     </Fragment>
   )
 }
