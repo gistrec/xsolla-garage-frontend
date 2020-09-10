@@ -3,7 +3,6 @@
     padding: 0;
 }
 
-
 .greeting {
     width: 335px;
     height: 291px;
@@ -11,7 +10,7 @@
     background-color: #FFFFFF;
     box-shadow: 10px 40px rgba(0, 115, 247, 0.01);
     border-radius: 8px;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .planner {
