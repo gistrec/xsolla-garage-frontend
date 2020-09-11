@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, argv) => ({
   entry: './src/index.jsx',
@@ -14,6 +15,11 @@ module.exports = (env, argv) => ({
   },
   devtool: argv.mode === 'production' ? 'hidden-source-map' : 'source-map',
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/Mocks/TaskTwo.json', to: path.join(__dirname, 'dist') }
+      ]
+    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
@@ -78,7 +84,7 @@ module.exports = (env, argv) => ({
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 9000,
-    // host: '0.0.0.0',
+    host: '0.0.0.0',
     hot: true
   }
 })
