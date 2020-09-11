@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './WorkspaceHeaderStyles.css'
+import styles from './WorkspaceHeaderStyles.module.css'
 
 const WorkspaceHeader = () => {
   return (
@@ -7,7 +7,7 @@ const WorkspaceHeader = () => {
       <div className={styles.WS_wrapper}>
         <div className={styles.WS_Space}>
           <h2 className={styles.WS_title}>Tasks</h2>
-          <button className={styles.Btn}>NEW TASK</button>
+          <button className={styles.Btn}>+ NEW TASK</button>
         </div>
       </div>
     </div>

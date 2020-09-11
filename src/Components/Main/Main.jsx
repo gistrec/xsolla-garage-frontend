@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import styles from './MainStyles.css'
+import styles from './MainStyles.module.css'
 import CalendarAndHello from '../CalendarAndHello/CalendarAndHello'
 import Workspace from '../Workspace/Workspace'
 

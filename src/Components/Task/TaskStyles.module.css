@@ -7,13 +7,16 @@
 }
 
 .TaskInput {
+    box-sizing: border-box;
+    padding: 12px;
     width: 100%;
     height: 80px;
     outline: none;
-
     border: 1px solid rgba(0, 36, 77, 0.08);
     background: #FCFDFF;
     border-radius: 8px 8px 0 0;
+    resize: none;
+    font-family: 'Graphik', sans-serif;
 }
 
 .TaskActions {
@@ -32,12 +35,17 @@
     align-items: center;
     order: 1;
     margin-left: auto;
+}
+
+.DelIconContainer {
     padding-right: 12px;
+    padding-top: 5px;
 }
 
 .DelIconContainer:hover {
-    color: red;
-    cursor: pointer;
+    fill: #3e3e3e !important;
+    transition: fill 0.3s;
+    cursor:pointer;
 }
 
 /*@media screen and (max-width: 1366px) {*/
