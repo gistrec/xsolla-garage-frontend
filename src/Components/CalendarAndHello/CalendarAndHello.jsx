@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './CalendarAndHelloStyles.css'
+import styles from './CalendarAndHelloStyles.module.css'
 import Calendar from '../Calendar/CalendarReact'
 import Greeting from '../Greeting/Greeting'
 const CalendarAndHello = () => {

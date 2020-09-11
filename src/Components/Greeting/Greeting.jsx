@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import styles from './GreetingStyles.css'
+import styles from './GreetingStyles.module.css'
 import planner from './Planner.png'
 
 const Greeting = () => {

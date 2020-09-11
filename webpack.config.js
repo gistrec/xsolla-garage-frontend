@@ -51,7 +51,7 @@ module.exports = (env, argv) => ({
       },
 
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -62,7 +62,17 @@ module.exports = (env, argv) => ({
           },
           'postcss-loader'
         ],
+        include: /\.module\.css$/
       },
+
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ],
+        exclude: /\.module\.css$/
+      }
     ],
   },
   devServer: {

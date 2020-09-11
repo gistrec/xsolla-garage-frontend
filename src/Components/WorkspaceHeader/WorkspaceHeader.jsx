@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './WorkspaceHeaderStyles.css'
+import styles from './WorkspaceHeaderStyles.module.css'
 
 const WorkspaceHeader = () => {
   return (

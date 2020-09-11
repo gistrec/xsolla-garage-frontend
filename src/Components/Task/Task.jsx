@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './TaskStyles.css'
+import styles from './TaskStyles.module.css'
 
 const Task = () => {
   return (
