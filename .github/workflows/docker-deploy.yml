@@ -28,8 +28,6 @@ jobs:
         
       - name: Docker-version
         run: | 
-          echo ${{ secrets.DOCKERHUB_USERNAME }}
-          echo ${{ secrets.DOCKERHUB_PASSWORD }}
           docker --version
           ls -a
           git --version
