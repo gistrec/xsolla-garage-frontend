@@ -10,7 +10,7 @@ module.exports = (env, argv) => ({
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   devtool: argv.mode === 'production' ? 'hidden-source-map' : 'source-map',
   plugins: [
@@ -32,10 +32,10 @@ module.exports = (env, argv) => ({
           {
             loader: 'svg-url-loader',
             options: {
-              limit: 10000,
+              limit: 10000
             }
-          },
-        ],
+          }
+        ]
       },
 
       {
@@ -45,9 +45,9 @@ module.exports = (env, argv) => ({
             loader: 'file-loader',
             options: {
               name: 'images/[name].[ext]'
-            },
-          },
-        ],
+            }
+          }
+        ]
       },
 
       {
@@ -73,12 +73,12 @@ module.exports = (env, argv) => ({
         ],
         exclude: /\.module\.css$/
       }
-    ],
+    ]
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 9000,
-	host: '0.0.0.0',
+    // host: '0.0.0.0',
     hot: true
   }
 })
