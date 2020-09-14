@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import Header from './Components/Header/Header'
 import Main from './Components/Main/Main'
 import axios from 'axios'
+import Recorder from './Components/Recoder/Recorder'
 
 class App extends React.Component {
   constructor (props) {
@@ -28,6 +29,7 @@ class App extends React.Component {
       <Fragment>
         <Header/>
         <Main/>
+        <Recorder/>
       </Fragment>
     )
   }
