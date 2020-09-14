@@ -1,7 +1,9 @@
 import { hot } from 'react-hot-loader/root'
 import React, { Fragment } from 'react'
 import Header from './Components/Header/Header'
+import LeftSide from './Components/LeftSide/LeftSide'
 import Main from './Components/Main/Main'
+import RightSide from './Components/RightSide/RightSide'
 import axios from 'axios'
 import styles from './AppStyles.module.css'
 
@@ -28,7 +30,9 @@ class App extends React.Component {
     return (
       <div className={styles.page}>
         <Header/>
+        <LeftSide/>
         <Main/>
+        <RightSide/>
       </div>
     )
   }

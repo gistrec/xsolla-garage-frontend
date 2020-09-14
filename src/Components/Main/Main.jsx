@@ -7,7 +7,6 @@ import Workspace from '../Workspace/Workspace'
 const Main = () => {
   return (
     <main className={styles.main}>
-      <CalendarAndHello/>
       <Workspace/>
     </main>
   )
