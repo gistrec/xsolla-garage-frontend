@@ -4,15 +4,13 @@ import planner from './Planner.png'
 
 const Greeting = () => {
   return (
-    <Fragment>
-      <div className={styles.greeting}>
-        <div className={styles.ImageContainer}>
-          <img src={planner} className={styles.grImage}/>
-        </div>
-        <p className={styles.helloUser}>Hi, User</p>
-        <p className={styles.currentTasks}>Looks like you've got a lot of work to do!</p>
+    <div className={styles.greeting}>
+      <div className={styles.ImageContainer}>
+        <img src={planner} className={styles.grImage}/>
       </div>
-    </Fragment>
+      <p className={styles.helloUser}>Hi, User</p>
+      <p className={styles.currentTasks}>Looks like you've got a lot of work to do!</p>
+    </div>
   )
 }
 export default Greeting

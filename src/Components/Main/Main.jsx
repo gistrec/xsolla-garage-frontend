@@ -6,12 +6,10 @@ import Workspace from '../Workspace/Workspace'
 // eslint-disable-next-line no-unused-vars
 const Main = () => {
   return (
-    <Fragment>
-      <main className={styles.main}>
-        <CalendarAndHello/>
-        <Workspace/>
-      </main>
-    </Fragment>
+    <main className={styles.main}>
+      <CalendarAndHello/>
+      <Workspace/>
+    </main>
   )
 }
 export default Main

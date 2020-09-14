@@ -5,9 +5,7 @@ import 'react-calendar/dist/Calendar.css'
 
 const CalendarReact = () => {
   return (
-    <Fragment>
-      <Calendar className={styles.calendar}/>
-    </Fragment>
+    <Calendar className={styles.calendar}/>
   )
 }
 export default CalendarReact
