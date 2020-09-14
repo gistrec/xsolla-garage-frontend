@@ -29,11 +29,11 @@
     /* White */
     color: #FFFFFF;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .Btn:hover {
     background: #004df0;
-    cursor: pointer;
 }
 
 .WS_wrapper {

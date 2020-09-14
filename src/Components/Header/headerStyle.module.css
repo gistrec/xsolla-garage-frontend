@@ -55,12 +55,12 @@ padding-right: 16px;
 
 .HeaderRightBell {
     padding-right: 16px;
+    cursor:pointer;
 }
 
 .HeaderRightBell:hover {
     fill: #3e3e3e;
     transition: fill 0.3s;
-    cursor:pointer;
 }
 
 .HeaderRight_PersonInfo{
