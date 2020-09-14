@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import Header from './Components/Header/Header'
 import Main from './Components/Main/Main'
 import axios from 'axios'
+import styles from './AppStyles.module.css'
 
 class App extends React.Component {
   constructor (props) {
@@ -25,10 +26,10 @@ class App extends React.Component {
 
   render () {
     return (
-      <Fragment>
+      <div className={styles.page}>
         <Header/>
         <Main/>
-      </Fragment>
+      </div>
     )
   }
 }
