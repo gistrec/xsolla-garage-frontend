@@ -3,17 +3,10 @@
 .Header {
     grid-column: 2/4;
 
-    width: 100%;
-    top: 0;
-    left: 0;
-
     background: #FFFFFF;
     box-shadow: 0 10px 40px rgba(0, 115, 247, 0.01), 0 6px 5px rgba(0, 115, 247, 0.03);
 }
 .HeaderWrapper {
-    /*max-width: 1060px;*/
-    margin: 0 200px;
-    padding: 12px 15px;
 }
 
 .HeaderWrapperTwo {
