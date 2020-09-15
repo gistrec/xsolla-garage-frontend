@@ -23,10 +23,6 @@
     display: flex;
 }
 
-.Wrapper {
-    /*width: 100%;*/
-}
-
 .DelAndSave {
     display: flex;
     flex-direction: row;
