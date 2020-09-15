@@ -1,12 +1,12 @@
 import React from 'react'
 import CalendarAndHello from '../CalendarAndHello/CalendarAndHello'
-import { leftSide } from './LeftSideStyles.module.css'
+import { sideBar } from './SideBarStyles.module.css'
 
-const LeftSide = () => {
+const SideBar = () => {
   return (
-    <aside className={leftSide}>
+    <aside className={sideBar}>
       <CalendarAndHello/>
     </aside>
   )
 }
-export default LeftSide
+export default SideBar
