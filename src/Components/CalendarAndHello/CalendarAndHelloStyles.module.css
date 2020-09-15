@@ -1,8 +1,6 @@
 .CalendarAndHello {
-    /*height: 40%;
-    padding-top: 3%;
-    padding-right: 1%;*/
-    margin-top: 2%;
-    margin-left: 14%;
-    width: 50%;
+    position: absolute;
+    top: 2%;
+    right: 4%;
+    width: 60%;
 }
