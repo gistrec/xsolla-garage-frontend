@@ -1,15 +1,14 @@
 .TaskContainer {
-    /*width: 624px;*/
+    width: 90%;
+    margin: 5%;
     background: #FFFFFF;
     box-shadow: 0 10px 40px rgba(0, 115, 247, 0.08), 0px 4px 12px rgba(0, 115, 247, 0.04);
     border-radius: 8px;
-    /*height: 198px;*/
 }
 
 .TaskInput {
-    box-sizing: border-box;
-    padding: 12px;
     width: 100%;
+    border: none;
     height: 80px;
     outline: none;
     border: 1px solid rgba(0, 36, 77, 0.08);
@@ -25,7 +24,6 @@
 }
 
 .Wrapper {
-    margin: 24px 32px 32px 32px;
     /*width: 100%;*/
 }
 
