@@ -1,10 +1,8 @@
 .workspace {
-    /*width: 48%;*/
     height: 956px;
     border-right: 1px solid rgba(0, 36, 77, 0.08);
     border-left: 1px solid rgba(0, 36, 77, 0.08);
 }
  form {
-     width: 48%;
  }
 

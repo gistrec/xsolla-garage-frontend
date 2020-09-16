@@ -3,13 +3,9 @@ import styles from './WorkspaceHeaderStyles.module.css'
 
 const WorkspaceHeader = () => {
   return (
-    <div className={styles.WS_header}>
-      <div className={styles.WS_wrapper}>
-        <div className={styles.WS_Space}>
-          <h2 className={styles.WS_title}>Tasks</h2>
-          <button className={styles.Btn}>+ NEW TASK</button>
-        </div>
-      </div>
+    <div className={styles.header}>
+      <h2 className={styles.title}> Tasks </h2>
+      <button className={styles.addTask}>+ NEW TASK</button>
     </div>
   )
 }

@@ -1,94 +1,58 @@
 @import url(//db.onlinewebfonts.com/c/ff43ca80668e47a1b1208ba9aed65ad2?family=Sharp+Grotesk+Medium+20);
 
-* {
-    margin: 0;
-    padding: 0;
+.header {
+    display: flex;
+    align-items: center;
+    grid-column: 2/4;
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0 10px 40px -40px rgba(0, 115, 247, 0.01), 0 6px 5px -5px rgba(0, 115, 247, 0.03);
 }
 
-.Header {
-    width: 100%;
-    top: 0;
+.headerTitle {
+    position: relative;
     left: 0;
 
-    background: #FFFFFF;
-    box-shadow: 0 10px 40px rgba(0, 115, 247, 0.01), 0 6px 5px rgba(0, 115, 247, 0.03);
-}
-.HeaderWrapper {
-    /*max-width: 1060px;*/
-    margin: 0 200px;
-    padding: 12px 15px;
-}
-
-.HeaderWrapperTwo {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    width: 20em;
 }
 
-.HeaderTitle {
-display: flex;
-flex-direction: row;
-align-items: center;
-}
-
-.HeaderTitlePic {
-display: flex;
-align-items: center;
-}
-
-.HeaderTitle_thumb {
-padding-right: 16px;
-}
-
-.HeaderTitleNameApp {
+.headerTitleNameApp {
     font-family: "Sharp Grotesk Medium 20", sans-serif;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.2em;
     text-transform: uppercase
 }
 
-.HeaderRight {
+.headerInfo {
+    position: absolute;
+    right: 0;
+
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    width: 8em;
 }
 
-.HeaderRightBell {
-    padding-right: 16px;
-}
-
-.HeaderRightBell:hover {
-    fill: #3e3e3e !important;
-    transition: fill 0.3s;
+.headerInfoBell {
     cursor:pointer;
+    transition: 0.3s;
 }
 
-.HeaderRight_PersonInfo{
-    display: flex;
+.headerInfoBell:hover {
+    fill: #3e3e3e;
 }
 
-.PersonInfo_Name {
+.headerInfoName {
     font-family: "Graphik", sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 15px;
-    line-height: 24px;
-
-    display: flex;
-    align-items: center;
-    /* identical to box height, or 160% */
+    font-size: 1.1em;
     color: #00244D;
 }
 
-.PersonInfo_Photo{
-padding-left: 12px;
-}
-
-.PersonInfo_Photo_thumb{
-
-}
-
-@media screen and (max-width: 1000px) {
+/*@media screen and (max-width: 1000px) {
     .HeaderWrapper {
         margin: 0;
     }
@@ -98,10 +62,10 @@ padding-left: 12px;
         flex-wrap: nowrap;
 
     }
-}
+}*/
 
 
-@media screen and (max-width: 335px) {
+/*@media screen and (max-width: 335px) {
     .Header {
         min-width: 335px;
     }
@@ -114,4 +78,4 @@ padding-left: 12px;
         font-size: 15px;
         line-height: 20px;
     }
-}
+}*/
