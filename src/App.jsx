@@ -6,6 +6,7 @@ import SideMain from './Components/SideMain/SideMain'
 import SideBar from './Components/SideBar/SideBar'
 import Main from './Components/Main/Main'
 import axios from 'axios'
+import Recorder from './Components/Recoder/Recorder'
 import styles from './AppStyles.module.css'
 
 class App extends React.Component {
@@ -38,6 +39,8 @@ class App extends React.Component {
           <SideBar/>
           <Main/>
         <SideMain/>
+
+        <Recorder/>
       </div>
     )
   }
