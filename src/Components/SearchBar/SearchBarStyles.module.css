@@ -1,0 +1,23 @@
+.searchBox {
+    width: 90%;
+    margin: 5%;
+    height: 44px;
+    box-shadow: 0px 10px 40px rgba(0, 115, 247, 0.01), 0px 6px 5px rgba(0, 115, 247, 0.02);
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 10px 16px 10px 16px;
+}
+
+.searchText {
+    width: 70%; /*при большей ширине ломается вёрстка когда меняешь размер окна браузера*/
+    border: none;
+}
+
+.searchText:focus {
+    outline: none;
+}
+
+.searchBtn {
+    float: right;
+}
