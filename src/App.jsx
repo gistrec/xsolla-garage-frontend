@@ -31,12 +31,12 @@ class App extends React.Component {
     return (
       <div className={styles.page}>
         <SideHeader/>
-          <Header/>
+        <Header/>
         <SideHeader/>
 
         <SideMain/>
-          <SideBar/>
-          <Main/>
+        <SideBar/>
+        <Main/>
         <SideMain/>
       </div>
     )
