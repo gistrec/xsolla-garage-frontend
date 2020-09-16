@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './CalendarAndHelloStyles.module.css'
-import Calendar from '../Calendar/CalendarReact'
+import CalendarReact from '../CalendarReact/CalendarReact'
 import Greeting from '../Greeting/Greeting'
 const CalendarAndHello = () => {
   return (
     <div className={styles.CalendarAndHello}>
       <Greeting/>
-      <Calendar/>
+      <CalendarReact/>
     </div>
   )
 }

@@ -5,14 +5,12 @@ import Task from '../Task/Task'
 
 const Workspace = () => {
   return (
-    <Fragment>
-      <form>
-        <div className={styles.workspace}>
-          <WorkspaceHeader/>
-          <Task/>
-        </div>
-      </form>
-    </Fragment>
+    <form>
+      <div className={styles.workspace}>
+        <WorkspaceHeader/>
+        <Task/>
+      </div>
+    </form>
   )
 }
 export default Workspace

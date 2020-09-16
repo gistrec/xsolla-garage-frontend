@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+    Фон тудушки
+    Min-height нужен для того, чтобы он гарантированно занимал всю страницу
+*/
+.page {
+    height: 100%;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr auto 4fr 1fr;
+    grid-template-rows: 4.5em auto;
+
+    background: #F0F3FF;
+    font-family: 'Graphik', sans-serif;
+}

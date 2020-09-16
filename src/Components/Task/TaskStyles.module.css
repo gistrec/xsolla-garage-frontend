@@ -1,15 +1,14 @@
 .TaskContainer {
-    /*width: 624px;*/
+    width: 90%;
+    margin: 5%;
     background: #FFFFFF;
-    box-shadow: 0 10px 40px rgba(0, 115, 247, 0.08), 0px 4px 12px rgba(0, 115, 247, 0.04);
+    box-shadow: 0px 10px 40px rgba(0, 115, 247, 0.01), 0px 6px 5px rgba(0, 115, 247, 0.02);
     border-radius: 8px;
-    /*height: 198px;*/
 }
 
 .TaskInput {
-    box-sizing: border-box;
-    padding: 12px;
     width: 100%;
+    border: none;
     height: 80px;
     outline: none;
     border: 1px solid rgba(0, 36, 77, 0.08);
@@ -24,11 +23,6 @@
     display: flex;
 }
 
-.Wrapper {
-    margin: 24px 32px 32px 32px;
-    /*width: 100%;*/
-}
-
 .DelAndSave {
     display: flex;
     flex-direction: row;
@@ -40,12 +34,12 @@
 .DelIconContainer {
     padding-right: 12px;
     padding-top: 5px;
+    cursor:pointer;
 }
 
 .DelIconContainer:hover {
-    fill: #3e3e3e !important;
+    fill: #3e3e3e;
     transition: fill 0.3s;
-    cursor:pointer;
 }
 
 /*@media screen and (max-width: 1366px) {*/
