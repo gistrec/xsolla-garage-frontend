@@ -65,11 +65,14 @@ const Recorder = () => {
 
   return (
     <div>
+      <h1>Voice text input</h1>
       <button onClick={SpeechRecognition.startListening}>Start</button>
       <button onClick={() => { SpeechRecognition.stopListening }}>Stop</button>
       <button onClick={resetTranscript}>Reset</button>
       <button onClick={() => { sendText() }}>Send Text</button>
+      <br/>
       <p>{transcript}</p>
+      <br/>
     </div>
   )
 }
