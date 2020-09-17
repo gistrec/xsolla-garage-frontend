@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styles from './WorkspaceStyles.module.css'
 import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader'
 import Task from '../Task/Task'
