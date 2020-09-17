@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { AppContainer } from 'react-hot-loader'
 
+const url = `http://35.184.198.167:8081`;
+
 const api = axios.create({
-    baseURL: `http://localhost:3000/tasks`
+    baseURL: url
 })
 
 class CRUD extends Component {
@@ -16,16 +18,63 @@ class CRUD extends Component {
         this.getTasks()
     }
 
+    async createTask() {
+        const api = '/task';
+        const data = {
+          "user_id": 9001,
+          "title": "Тестирование голосового ввода",
+          "text_content": 'test',
+          "date_create": "2020-09-08 17:17:52",
+          "date_target": "2020-09-20 17:17:52",
+          "is_important": true,
+          "is_urgent": true
+        };
+    
+        fetch(url + api, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+    }
+
+    async deleteTask(id) {
+        const api = `/task/${id}`;
+        console.log(url + api)
+    
+        fetch(url + api, {
+          method: 'DELETE'
+        })
+    }
+
     async getTasks() {
         try {
-            let data = await api.get('/').then(({data}) => data)
-            this.setState({ tasks: data })
+            const api = '/task'
+            fetch(url + api).then(data => data.json()).then(json => this.setState({ tasks: json }))
+            //let data = await api.get('/task').then(({data}) => data).then(data => {console.log(data); })
         } catch(err) {
             console.log(err)
         }
     }
 
-    async createTask() {
+    async updateTask(id, val) {
+        try {
+            const api = `/task/${id}`
+            fetch(url + api, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text_content: val })
+              })
+            this.getTasks()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    /*async createTask() {
         try {
             let res = await api.post('/', { id: 13, title: "Test task", text_content: "Some random text" })
             console.log(res)
@@ -34,9 +83,9 @@ class CRUD extends Component {
         catch(err) {
             console.log(err)
         }
-    }
+    }*/
 
-    async deleteTask(id) {
+    /*async deleteTask(id) {
         try {
             let data = await api.delete(`/${id}`)
             this.getTasks()
@@ -44,16 +93,7 @@ class CRUD extends Component {
         catch(err) {
             console.log(err)
         }
-    }
-
-    async updateTask(id, val) {
-        try {
-            let data = await api.patch(`/${id}`, { text_content: val })
-            this.getTasks()
-        } catch(err) {
-            console.log(err)
-        }
-    }
+    }*/
 
     render() {
         return (
