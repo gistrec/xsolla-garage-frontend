@@ -1,14 +1,14 @@
 import React from 'react'
 import styles from './TaskStyles.module.css'
-const Task = () => {
+const Task = ({ id, title, bodyTask }) => {
   return (
-    <div className={styles.TaskContainer}>
+    <div className={styles.TaskContainer} id={id}>
       <details>
         <summary className={styles.TaskTitleContainer}>
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
             <div className={styles.TitleDataWrapper}>
-              <input maxLength="100" className={styles.Title}/>
+              <input maxLength="100" className={styles.Title} defaultValue={title}/>
               <time>1957-10-04, 12:00</time>
             </div>
           </div>
@@ -31,7 +31,7 @@ const Task = () => {
           </div>
         </summary>
 
-        <textarea className={styles.TaskInput}/>
+        <textarea className={styles.TaskInput} defaultValue={ bodyTask }/>
         <div className={styles.TaskActions}>
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>

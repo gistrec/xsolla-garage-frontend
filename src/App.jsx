@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader/root'
-import React, { Fragment } from 'react'
+import React from 'react'
 import Header from './Components/Header/Header'
 import SideHeader from './Components/SideHeader/SideHeader'
 import SideMain from './Components/SideMain/SideMain'
@@ -10,7 +10,7 @@ import axios from 'axios'
 import styles from './AppStyles.module.css'
 
 class App extends React.Component {
- /* constructor (props) {
+  constructor (props) {
     super(props)
     this.state = {
       tasks: []
@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    axios.get('http://localhost:3000/tasks')
+    axios.get('http://35.184.198.167:8081/task')
       .then(resp => {
         const tasksData = resp.data
         this.setState({ tasks: tasksData })
@@ -26,7 +26,7 @@ class App extends React.Component {
       }).catch(error => {
         console.log(error)
       })
-  } */
+  }
 
   render () {
     return (
@@ -37,7 +37,7 @@ class App extends React.Component {
 
         <SideMain/>
         <SideBar/>
-        <Main/>
+        <Main tasks={this.state.tasks}/>
         <SideMain/>
 
         <CRUD/>
