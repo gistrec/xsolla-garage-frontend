@@ -1,7 +1,7 @@
-import Axios from 'axios';
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import axios from "axios";
+import styles from './Recorder.module.css'
+import moment from 'moment'
 
 
 const Recorder = () => {
@@ -14,64 +14,39 @@ const Recorder = () => {
 
   const sendText = () => {
     const api = '/task';
+  //const date = moment().format('YYYY-MM-DD HH:mm:ss');
     const data = {
-      //   "user_id": 9001,
-      "title": "Тестирование голосового ввода",
       "text_content": transcript,
-      //   "date_create": "2020-09-08 17:17:52",
-      //   "date_target": "2020-09-20 17:17:52",
-      //   "is_important": true,
-      //   "is_urgent": true
+    //"current_date": date
     };
-    /*const options = {
-      method: 'POST',
-      url: url + api,
-      data: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    };*/
 
     fetch(url + api, {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json();
     })
-
-    /*axios(options)
-      .then(res => console.log(res))
-      .then(() => getTasks())
-      .catch(err => console.dir(err))*/
-  }
-
-  const getTasks = () => {
-    const api = '/task';
-    const options = {
-      method: 'GET',
-      url: url + api,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    };
-
-    axios.get(url + api)
-      .then(res => console.log(res))
-      .catch(err => console.dir(err));
+    .then((data) => {
+      console.log(data);
+    });
   }
 
   return (
-    <div>
-      <h1>Voice text input</h1>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={() => { SpeechRecognition.stopListening }}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
+    <div className={styles.background}>
+      <h1 className={styles.title}>Voice text input</h1>
+      <br/>
+      <button onClick={() => { SpeechRecognition.startListening({ continuous: true, language: 'ru' }) }}>Start</button>
+      <button onClick={ SpeechRecognition.stopListening }>Stop</button>
+      <button onClick={ resetTranscript }>Reset</button>
       <button onClick={() => { sendText() }}>Send Text</button>
       <br/>
-      <p>{transcript}</p>
+      <br/>
+      <div className={styles.textContainer}>
+        <p className={styles.text}> {transcript} </p>
+      </div>
       <br/>
     </div>
   )

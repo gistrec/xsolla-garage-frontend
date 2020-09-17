@@ -10,14 +10,14 @@ import Recorder from './Components/Recoder/Recorder'
 import styles from './AppStyles.module.css'
 
 class App extends React.Component {
-  constructor (props) {
+ /* constructor(props) {
     super(props)
     this.state = {
       tasks: []
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios.get('http://localhost:3000/tasks')
       .then(resp => {
         const tasksData = resp.data
@@ -26,20 +26,22 @@ class App extends React.Component {
       }).catch(error => {
         console.log(error)
       })
-  }
+  } */
 
-  render () {
+  render() {
     return (
-      <div className={styles.page}>
-        <SideHeader/>
-          <Header/>
-        <SideHeader/>
+      <div>
+        <div className={styles.page}>
+          <SideHeader />
+          <Header />
+          <SideHeader />
 
-        <SideMain/>
-          <SideBar/>
-          <Main/>
-        <SideMain/>
-
+          <SideMain />
+          <SideBar />
+          <Main>
+          </Main>
+          <SideMain />
+        </div>
         <Recorder/>
       </div>
     )
