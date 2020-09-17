@@ -164,16 +164,8 @@ button:focus {
 }
 
 svg:hover path {
-    stroke: #424242;
     fill: #424242;
 }
-
-.IconSave:hover path {
-    stroke: #424242;
-    stroke-width: 8%;
-    fill: none;
-}
-
 
 
 @media screen and (max-width: 917px) {
