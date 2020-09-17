@@ -6,7 +6,6 @@
     border-radius: 8px;
 }
 
-
 .TaskTitleContainer {
     display: flex;
     width: 100%;
@@ -44,6 +43,12 @@
     font-size: 11px;
     line-height: 16px;
     overflow: hidden;
+    border: 1px solid #747E8A;
+    border-radius: 5px;
+}
+
+.Title:hover {
+    border: 1px solid #747E8A;
 }
 
 time {
@@ -67,6 +72,9 @@ time {
 .IconWrapper {
     display: flex;
     padding-right: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .IconWrapper:last-child {
@@ -85,16 +93,12 @@ summary::marker{
     display:none;
 }
 summary {
-    /*padding: .3em .6em .3em 1.5em;*/
-    /*font-size:1.4em;*/
     position: relative;
     display: flex;
     align-items:center;
 }
 summary:before {
     right: 1%;
-    /*top: .4em;*/
-    /*color: transparent;*/
     background: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjM0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
     width: 2em;
     height: 2em;
@@ -107,9 +111,7 @@ summary:before {
 details[open] > summary:before {
     transform: rotateZ(270deg);
 }
-summary ~ * {
-    /*padding:0 1em 0 1em;*/
-}
+
 details[open] summary ~ *{
     animation: sweep .5s ease-in-out;
 }
@@ -119,11 +121,9 @@ details[open] summary ~ *{
 }
 summary:focus {
     outline:0;
-    box-shadow: inset 0 0 1px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
 }
 details{
     display:block;
-    /*margin-bottom: .5rem;*/
     font-size: 30px;
 }
 
@@ -150,24 +150,40 @@ details{
     margin-left: auto;
 }
 
+button,
+button:active,
+button:focus {
+    outline: none;
+}
+
 .DelIconContainer {
     padding-right: 12px;
     cursor:pointer;
+    border: none;
+    background: none;
 }
 
-.DelIconContainer:hover {
-    fill: #3e3e3e;
-    transition: fill 0.3s;
+svg:hover path {
+    stroke: #424242;
+    fill: #424242;
 }
+
+.IconSave:hover path {
+    stroke: #424242;
+    stroke-width: 8%;
+    fill: none;
+}
+
+
 
 @media screen and (max-width: 917px) {
     .Icon{
         width: 12px;
     }
 
-    /*.IconWrapper:last-child {*/
-    /*    border-right: none;*/
-    /*}*/
+    .IconBottom {
+        width: 16px !important;
+    }
 
 }
 
@@ -176,10 +192,6 @@ details{
     summary:before {
         right: 2%;
     }
-
-    /*.IconWrapper:last-child {*/
-    /*    border-right: none;*/
-    /*}*/
 
 }
 
