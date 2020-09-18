@@ -5,19 +5,21 @@ import moment from 'moment'
 
 
 const Recorder = () => {
+
   const { transcript, resetTranscript } = useSpeechRecognition()
-  const url = "http://35.184.198.167:8081";
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
   }
 
+  const url = `https://garage-analytical-back.herokuapp.com`;
+
   const sendText = () => {
-    const api = '/task';
-  //const date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const api = `/date_tags`;
+    const date = moment().format('YYYY-MM-DD HH:mm:ss');
     const data = {
       "text_content": transcript,
-    //"current_date": date
+      "current_date": date
     };
 
     fetch(url + api, {
