@@ -6,14 +6,133 @@
     border-radius: 8px;
 }
 
-.TaskInput {
+.TaskTitleContainer {
+    display: flex;
     width: 100%;
-    border: none;
-    height: 80px;
+    height: 69px;
     outline: none;
     border: 1px solid rgba(0, 36, 77, 0.08);
     background: #FCFDFF;
     border-radius: 8px 8px 0 0;
+    resize: none;
+    font-family: 'Graphik', sans-serif;
+}
+
+.CheckboxTitleWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.TitleDataWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.Checkbox {
+    margin: 0 12px 0 16px;
+    resize: none;
+}
+
+.Title {
+    width: 146px;
+    height: 16px;
+    resize: none;
+    font-family: Graphik LCG;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    overflow: hidden;
+    border: 1px solid #747E8A;
+    border-radius: 5px;
+}
+
+.Title:hover {
+    border: 1px solid #747E8A;
+}
+
+time {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    color: #747E8A;
+    font-family: Graphik LCG;
+}
+
+
+.Icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.IconWrapper {
+    display: flex;
+    padding-right: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.IconWrapper:last-child {
+    border-right: 1px solid #C5D0DB;
+}
+
+
+summary::-webkit-details-marker{
+    display:none;
+
+}
+summary::-moz-list-bullet{
+    list-style-type:none;
+}
+summary::marker{
+    display:none;
+}
+summary {
+    position: relative;
+    display: flex;
+    align-items:center;
+}
+summary:before {
+    right: 1%;
+    background: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjM0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
+    width: 2em;
+    height: 2em;
+    content: "";
+    position: absolute;
+    transition: transform .5s;
+    transform: rotateZ(90deg);
+    cursor: pointer;
+}
+details[open] > summary:before {
+    transform: rotateZ(270deg);
+}
+
+details[open] summary ~ *{
+    animation: sweep .5s ease-in-out;
+}
+@keyframes sweep {
+    0%    {opacity: 0;}
+    100%  {opacity: 1;}
+}
+summary:focus {
+    outline:0;
+}
+details{
+    display:block;
+    font-size: 30px;
+}
+
+.TaskInput {
+    width: 100%;
+    height: 80px;
+    outline: none;
+    border: 1px solid rgba(0, 36, 77, 0.08);
+    background: #FCFDFF;
     resize: none;
     font-family: 'Graphik', sans-serif;
 }
@@ -31,18 +150,40 @@
     margin-left: auto;
 }
 
+button,
+button:active,
+button:focus {
+    outline: none;
+}
+
 .DelIconContainer {
     padding-right: 12px;
-    padding-top: 5px;
     cursor:pointer;
+    border: none;
+    background: none;
 }
 
-.DelIconContainer:hover {
-    fill: #3e3e3e;
-    transition: fill 0.3s;
+svg:hover path {
+    fill: #424242;
 }
 
-/*@media screen and (max-width: 1366px) {*/
-/*    */
-/*}*/
+
+@media screen and (max-width: 917px) {
+    .Icon{
+        width: 12px;
+    }
+
+    .IconBottom {
+        width: 16px !important;
+    }
+
+}
+
+
+@media screen and (max-width: 1366px) {
+    summary:before {
+        right: 2%;
+    }
+
+}
 

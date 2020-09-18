@@ -1,10 +1,11 @@
 import { hot } from 'react-hot-loader/root'
-import React, { Fragment } from 'react'
+import React from 'react'
 import Header from './Components/Header/Header'
 import SideHeader from './Components/SideHeader/SideHeader'
 import SideMain from './Components/SideMain/SideMain'
 import SideBar from './Components/SideBar/SideBar'
 import Main from './Components/Main/Main'
+import CRUD from './Methods/CRUD'
 import axios from 'axios'
 import Recorder from './Components/Recoder/Recorder'
 import styles from './AppStyles.module.css'
@@ -38,9 +39,10 @@ class App extends React.Component {
 
           <SideMain />
           <SideBar />
-          <Main>
-          </Main>
+          <Main tasks={this.state.tasks}/>
           <SideMain />
+          
+          <CRUD/>
         </div>
         <Recorder/>
       </div>
