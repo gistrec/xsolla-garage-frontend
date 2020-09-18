@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://35.184.198.167:8081/task`)
+    axios.get(`https://garage-backend:8081/task`)
       .then(resp => {
         const tasksData = resp.data
         this.setState({ tasks: tasksData })
