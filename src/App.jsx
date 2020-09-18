@@ -7,18 +7,19 @@ import SideBar from './Components/SideBar/SideBar'
 import Main from './Components/Main/Main'
 import CRUD from './Methods/CRUD'
 import axios from 'axios'
+import Recorder from './Components/Recoder/Recorder'
 import styles from './AppStyles.module.css'
 
 class App extends React.Component {
-  constructor (props) {
+ /* constructor(props) {
     super(props)
     this.state = {
       tasks: []
     }
   }
 
-  componentDidMount () {
-    axios.get('http://35.184.198.167:8081/task')
+  componentDidMount() {
+    axios.get('http://localhost:3000/tasks')
       .then(resp => {
         const tasksData = resp.data
         this.setState({ tasks: tasksData })
@@ -26,21 +27,24 @@ class App extends React.Component {
       }).catch(error => {
         console.log(error)
       })
-  }
+  } */
 
-  render () {
+  render() {
     return (
-      <div className={styles.page}>
-        <SideHeader/>
-        <Header/>
-        <SideHeader/>
+      <div>
+        <div className={styles.page}>
+          <SideHeader />
+          <Header />
+          <SideHeader />
 
-        <SideMain/>
-        <SideBar/>
-        <Main tasks={this.state.tasks}/>
-        <SideMain/>
-
-        <CRUD/>
+          <SideMain />
+          <SideBar />
+          <Main tasks={this.state.tasks}/>
+          <SideMain />
+          
+          <CRUD/>
+        </div>
+        <Recorder/>
       </div>
     )
   }

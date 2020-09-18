@@ -9,7 +9,7 @@ const Header = () => {
 
           <div className={styles.headerTitle}>
             <img src={logo} alt=""/>
-            <h1 className={styles.headerTitleNameApp}>The best scheduler ever</h1>
+            <h1 className={styles.headerTitleNameApp}>The best planner ever</h1>
           </div>  
 
           <div className={styles.headerInfo}>
