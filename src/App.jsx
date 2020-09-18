@@ -5,8 +5,6 @@ import SideHeader from './Components/SideHeader/SideHeader'
 import SideMain from './Components/SideMain/SideMain'
 import SideBar from './Components/SideBar/SideBar'
 import Main from './Components/Main/Main'
-import CRUD from './Methods/CRUD'
-import axios from 'axios'
 import Recorder from './Components/Recoder/Recorder'
 import styles from './AppStyles.module.css'
 
@@ -19,14 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://garage-best-team-ever.tk/task`)
-      .then(resp => {
-        const tasksData = resp.data
-        this.setState({ tasks: tasksData })
-        console.log(this.state.tasks)
-      }).catch(error => {
-        console.log(error)
-      })
+    fetch(`https://garage-best-team-ever.tk/task`).then(data => data.json()).then(json => this.setState({ tasks: json }))
   }
 
   render() {
