@@ -40,10 +40,10 @@ const Recorder = () => {
     <div className={styles.background}>
       <h1 className={styles.title}>Voice text input</h1>
       <br/>
-      <button onClick={() => { SpeechRecognition.startListening({ continuous: true, language: 'ru' }) }}>Start</button>
-      <button onClick={ SpeechRecognition.stopListening }>Stop</button>
-      <button onClick={ resetTranscript }>Reset</button>
-      <button onClick={() => { sendText() }}>Send Text</button>
+      <button className={styles.recorderButton} onClick={() => { SpeechRecognition.startListening({ continuous: true, language: 'ru' }) }}>Start</button>
+      <button className={styles.recorderButton} onClick={ SpeechRecognition.stopListening }>Stop</button>
+      <button className={styles.recorderButton} onClick={ resetTranscript }>Reset</button>
+      <button className={styles.recorderButton} onClick={() => { sendText() }}>Send Text</button>
       <br/>
       <br/>
       <div className={styles.textContainer}>
