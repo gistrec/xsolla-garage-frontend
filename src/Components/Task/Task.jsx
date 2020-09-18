@@ -1,6 +1,22 @@
 import React from 'react'
 import styles from './TaskStyles.module.css'
 const Task = ({ id, title, bodyTask }) => {
+  const url = `https://garage-best-team-ever.tk`;
+
+  const deleteRequest = (id) => {
+    const api = `/task/${id}`;
+    console.log(url + api)
+
+    fetch(url + api, {
+      method: 'DELETE'
+    })
+}
+
+  const deleteTask = () => {
+    const container = document.getElementsByClassName(styles.TaskContainer)[0];
+    deleteRequest(container.id);
+  }
+
   return (
     <div className={styles.TaskContainer} id={id}>
       <details>
@@ -39,7 +55,7 @@ const Task = ({ id, title, bodyTask }) => {
                 <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A"/>
               </svg>
             </button>
-            <button className={styles.DelIconContainer}>
+            <button className={styles.DelIconContainer} onClick={ deleteTask }>
               <svg className={styles.Icon + ' ' + styles.IconBottom} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M5 8v12c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2V8c0 0-.447 0-1 0H6C5.447 8 5 8 5 8zM3 6L8 6 16 6 21 6 21 4 16.618 4 15 2 9 2 7.382 4 3 4z" fill="#747E8A"/>
               </svg>
