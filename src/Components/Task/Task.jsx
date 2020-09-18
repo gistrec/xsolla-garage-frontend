@@ -9,7 +9,7 @@ const Task = ({ id, title, bodyTask }) => {
             <input type="checkbox" className={styles.Checkbox}/>
             <div className={styles.TitleDataWrapper}>
               <input maxLength="100" className={styles.Title} defaultValue={title}/>
-              <time>1957-10-04, 12:00</time>
+              <time>2020-09-20, 12:00</time>
             </div>
           </div>
           <div className={styles.Icons}>

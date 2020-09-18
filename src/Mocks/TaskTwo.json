@@ -1,27 +1,26 @@
 {
   "tasks": [
     {
-"id": 2,
-"user_id": 0,
-"title": "Купить",
-"category": "tasks",
-"text_content": "молоко и печенье",
-"date_create": "2020-09-09 08:20:49",
-"date_close": null,
-"date_target": "2020-09-19 08:20:49",
-"is_completed": false
-},
-
-  {
-    "id": 3,
-"user_id": 0,
-"title": "Выйучить английский",
-"category": "tasks",
-"text_content": "посмотреть видео",
-"date_create": null,
-"date_close": null,
-"date_target": "2020-09-19 08:20:49",
-"is_completed": false
- }
-]
+      "id": 2,
+      "user_id": 0,
+      "title": "Купить",
+      "category": "tasks",
+      "text_content": "молоко и печенье",
+      "date_create": "2020-09-09 08:20:49",
+      "date_close": null,
+      "date_target": "2020-09-19 08:20:49",
+      "is_completed": false
+    },
+    {
+      "id": 3,
+      "user_id": 0,
+      "title": "Выйучить английский",
+      "category": "tasks",
+      "text_content": "посмотреть видео",
+      "date_create": null,
+      "date_close": null,
+      "date_target": "2020-09-19 08:20:49",
+      "is_completed": false
+    }
+  ]
 }

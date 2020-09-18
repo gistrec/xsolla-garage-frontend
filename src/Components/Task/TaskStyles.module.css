@@ -12,7 +12,7 @@
     height: 69px;
     outline: none;
     border: 1px solid rgba(0, 36, 77, 0.08);
-    background: #FCFDFF;
+    background: #FFFFFF;
     border-radius: 8px 8px 0 0;
     resize: none;
     font-family: 'Graphik', sans-serif;
@@ -34,20 +34,21 @@
 }
 
 .Title {
-    width: 146px;
-    height: 16px;
+    width: 200px;
+    height: 24px;
     resize: none;
-    font-family: Graphik LCG;
+    font-family: 'Graphik', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 11px;
-    line-height: 16px;
+    font-size: 15px;
+    line-height: 24px;
     overflow: hidden;
-    border: 1px solid #747E8A;
+    border: none;
     border-radius: 5px;
 }
 
-.Title:hover {
+.Title:focus {
+    outline: none;
     border: 1px solid #747E8A;
 }
 
@@ -135,6 +136,7 @@ details{
     background: #FCFDFF;
     resize: none;
     font-family: 'Graphik', sans-serif;
+    padding: 16px;
 }
 
 .TaskActions {
