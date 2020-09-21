@@ -12,14 +12,16 @@ const Recorder = () => {
     return null
   }
 
-  const url = `https://garage-analytical-back.herokuapp.com`;
+  const url = `https://garage-best-team-ever.tk`;
 
   const sendText = () => {
-    const api = `/date_tags`;
-    const date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const api = `/task`;
+  /* const date = moment().format('YYYY-MM-DD HH:mm:ss'); */
     const data = {
+      "title": "New task",
       "text_content": transcript,
-      "current_date": date
+      "date_target": "2020-09-25 12:00:00"
+    /* "current_date": date */
     };
 
     fetch(url + api, {

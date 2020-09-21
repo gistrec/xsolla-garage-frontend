@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 const Workspace = ({ tasks }) => {
   return (
-    <form>
+    <div>
       <div className={styles.workspace}>
         <WorkspaceHeader/>
         <SearchBar/>
@@ -14,7 +14,7 @@ const Workspace = ({ tasks }) => {
           <Task key={task.id} id={task.id} title={task.title} bodyTask={task.text_content}/>
         ))}
       </div>
-    </form>
+    </div>
   )
 }
 export default Workspace
