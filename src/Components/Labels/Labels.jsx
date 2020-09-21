@@ -3,39 +3,31 @@ import styles from './Labels.module.css'
 
 const Labels = props => {
 
-    const [tags, setTags] = React.useState(props.tags);
+    const [labels, setLabels] = React.useState(props.labels)
 
-	const removeTags = indexToRemove => {
-		setTags([...tags.filter((_, index) => index !== indexToRemove)]);
+	const removeLabels = indexToRemove => {
+		setLabels([...labels.filter((_, index) => index !== indexToRemove)])
     };
     
-	const addTags = event => {
+	const addLabels = event => {
 		if (event.target.value !== "") {
-			setTags([...tags, event.target.value]);
-			props.selectedTags([...tags, event.target.value]);
+			setLabels([...labels, event.target.value])
+			props.selectedLabels([...labels, event.target.value])
 			event.target.value = "";
 		}
     };
     
 	return (
-		<div className={styles.tagsInput}>
-			<ul className={styles.tags}>
-				{tags.map((tag, index) => (
-					<li key={index} className={styles.tag}>
-						<span className={styles.tagTitle}>{tag}</span>
-						<span className={styles.tagCloseIcon}
-							onClick={() => removeTags(index)}
-						>
-							x
-						</span>
+		<div className={styles.labelsInput}>
+			<ul className={styles.labels}>
+				{labels.map((label, index) => (
+					<li key={index} className={styles.label}>
+						<span className={styles.labelTitle}>{label}</span>
+						<span className={styles.labelCloseIcon} onClick={() => removeLabels(index)}>x</span>
 					</li>
 				))}
 			</ul>
-			<input
-				type="text"
-				onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-				placeholder="Press enter to add tags"
-			/>
+			<input type="text" onKeyUp={event => event.key === "Enter" ? addLabels(event) : null} placeholder="Press enter to add labels"/>
 		</div>
 	);
 };
