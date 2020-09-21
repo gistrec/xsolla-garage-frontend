@@ -13,7 +13,7 @@ const Task = ({ id, title, bodyTask }) => {
       SpeechRecognition.startListening({ continuous: true, language: 'ru' })
     } else if (on === false) {
       // eslint-disable-next-line no-unused-expressions
-      SpeechRecognition.stopListening
+      SpeechRecognition.stopListening()
       console.log(on + ' recording stopped')
     }
   }
