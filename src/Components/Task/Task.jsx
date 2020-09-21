@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './TaskStyles.module.css'
+import Labels from '../Labels/Labels'
+
 const Task = ({ id, title, bodyTask }) => {
   const url = `https://garage-best-team-ever.tk`;
 
@@ -16,6 +18,10 @@ const Task = ({ id, title, bodyTask }) => {
     const container = document.getElementsByClassName(styles.TaskContainer)[0];
     deleteRequest(container.id);
   }
+
+  const selectedTags = tags => {
+		console.log(tags);
+	};
 
   return (
     <div className={styles.TaskContainer} id={id}>
@@ -49,6 +55,7 @@ const Task = ({ id, title, bodyTask }) => {
 
         <textarea className={styles.TaskInput} defaultValue={ bodyTask }/>
         <div className={styles.TaskActions}>
+          <Labels selectedTags={selectedTags}  tags={['Tag1', 'Tag2']}/>
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>
               <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
