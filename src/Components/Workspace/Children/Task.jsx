@@ -11,8 +11,15 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [on, setOn] = useState(true)
   const { transcript } = useSpeechRecognition()
 
+  // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1);
   useEffect(() => {console.log(id); setId(id)}, []);
+
+  // Рендерит теги только если они есть
+  const renderTags = () => {
+    if (typeof tags !== 'undefined')
+     return(<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>);
+  }
   
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
@@ -99,7 +106,10 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
         <textarea className={styles.TaskInput} defaultValue={ bodyTask } value={transcript}/>
         <div className={styles.TaskActions}>
-          <Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>
+          {
+            // Если теги переданы, то они рендерятся
+            renderTags()
+          }
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>
               <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
