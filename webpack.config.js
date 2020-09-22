@@ -15,11 +15,6 @@ module.exports = (env, argv) => ({
   },
   devtool: argv.mode === 'production' ? 'hidden-source-map' : 'source-map',
   plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/Mocks/TaskTwo.json', to: path.join(__dirname, 'dist') }
-      ]
-    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html'

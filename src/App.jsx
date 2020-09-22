@@ -1,11 +1,11 @@
 import { hot } from 'react-hot-loader/root'
 import React from 'react'
 import Header from './Components/Header/Header'
-import SideHeader from './Components/SideHeader/SideHeader'
-import SideMain from './Components/SideMain/SideMain'
+import SideHeader from './Components/GridComponents/SideHeader'
+import SideMain from './Components/GridComponents/SideMain'
 import SideBar from './Components/SideBar/SideBar'
-import Main from './Components/Main/Main'
-import Recorder from './Components/Recoder/Recorder'
+import Workspace from './Components/Workspace/Workspace'
+import Recorder from './Components/Template/Recorder'
 import styles from './AppStyles.module.css'
 
 class App extends React.Component {
@@ -30,7 +30,7 @@ class App extends React.Component {
 
           <SideMain />
           <SideBar />
-          <Main tasks={this.state.tasks}/>
+          <Workspace tasks={this.state.tasks}/>
           <SideMain />
           {/* <CRUD/> */}
         </div>

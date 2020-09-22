@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import styles from './GreetingStyles.module.css'
-import planner from './Planner.png'
+import planner from '../../../Assets/Pictures/Planner.png'
 
 const Greeting = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import CalendarAndHello from '../CalendarAndHello/CalendarAndHello'
+import CalendarAndHello from './Children/CalendarAndHello'
 import { sideBar } from './SideBarStyles.module.css'
 
 const SideBar = () => {

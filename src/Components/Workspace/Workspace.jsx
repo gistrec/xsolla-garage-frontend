@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styles from './WorkspaceStyles.module.css'
-import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader'
-import Task from '../Task/Task'
-import SearchBar from '../SearchBar/SearchBar'
+import WorkspaceHeader from './Children/WorkspaceHeader'
+import Task from './Children/Task'
+import SearchBar from './Children/SearchBar'
 
 const Workspace = ({ tasks }) => {
 
