@@ -1,11 +1,11 @@
 import React from 'react'
-import CalendarAndHello from './Children/CalendarAndHello'
+import CalendarAndGreeting from './Children/CalendarAndGreeting'
 import { sideBar } from './SideBarStyles.module.css'
 
 const SideBar = () => {
   return (
     <aside className={sideBar}>
-      <CalendarAndHello/>
+      <CalendarAndGreeting/>
     </aside>
   )
 }
