@@ -100,7 +100,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           </div>
         </summary>
 
-        <textarea className={styles.TaskInput} defaultValue={ bodyTask } value={transcript}/>
+        <textarea className={styles.TaskInput} defaultValue={bodyTask === "" ? transcript : bodyTask}/>
         <div className={styles.TaskActions}>
           <Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>
           <div className={styles.DelAndSave}>
