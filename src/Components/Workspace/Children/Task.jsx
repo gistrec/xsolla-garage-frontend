@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './TaskStyles.module.css'
-import Tags from '../Tags/Tags'
+import Tags from './Tags'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
