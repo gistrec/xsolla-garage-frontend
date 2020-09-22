@@ -4,7 +4,7 @@ import Tags from '../Tags/Tags'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
-const Task = ({ id, title, bodyTask }) => {
+const Task = ({ id, title, bodyTask, tags }) => {
   
   const [on, setOn] = useState(true)
   const { transcript } = useSpeechRecognition()
@@ -102,7 +102,7 @@ const Task = ({ id, title, bodyTask }) => {
 
         <textarea className={styles.TaskInput} defaultValue={ bodyTask } value={transcript}/>
         <div className={styles.TaskActions}>
-          <Tags selectedTags={selectedTags} tags={[]}/>
+          <Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>
               <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

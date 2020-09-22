@@ -32,7 +32,7 @@ class App extends React.Component {
           <SideBar />
           <Main tasks={this.state.tasks}/>
           <SideMain />
-          {/* <CRUD/> */}
+          {console.log(this.state.tasks)}
         </div>
         <Recorder/>
       </div>
