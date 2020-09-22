@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './TaskStyles.module.css'
 import Tags from './Tags'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
@@ -6,8 +6,13 @@ import moment from 'moment'
 
 const Task = ({ id, title, bodyTask, tags }) => {
   
+  const url = `https://garage-best-team-ever.tk`;
+
   const [on, setOn] = useState(true)
   const { transcript } = useSpeechRecognition()
+
+  const [taskId, setId] = useState(-1);
+  useEffect(() => {console.log(id); setId(id)}, []);
   
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
@@ -49,10 +54,8 @@ const Task = ({ id, title, bodyTask, tags }) => {
       })
   } */
 
-  const url = `https://garage-best-team-ever.tk`;
-
-  const deleteRequest = (id) => {
-    const api = `/task/${id}`
+  const deleteTask = () => {
+    const api = `/task/${taskId}`
     console.log(url + api)
 
     fetch(url + api, {
@@ -60,17 +63,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
     })
   }
 
-  const deleteTask = () => {
-    const container = document.getElementsByClassName(styles.TaskContainer)[0]
-    deleteRequest(container.id)
-  }
-
   const selectedTags = tags => {
     console.log(tags)
   }
     
   return (
-    <div className={styles.TaskContainer} id={id}>
+    <div className={styles.TaskContainer}>
       <details>
         <summary className={styles.TaskTitleContainer}>
           <div className={styles.CheckboxTitleWrapper}>
