@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styles from './GreetingStyles.module.css'
 import planner from '../../../Assets/Pictures/Planner.png'
 

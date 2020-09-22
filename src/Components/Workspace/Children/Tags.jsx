@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Tags.module.css'
+import styles from './TagsStyles.module.css'
 
 const Tags = props => {
   const [input, setInput] = React.useState('')
