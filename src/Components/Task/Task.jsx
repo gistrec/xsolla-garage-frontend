@@ -3,25 +3,25 @@ import styles from './TaskStyles.module.css'
 import Labels from '../Labels/Labels'
 
 const Task = ({ id, title, bodyTask }) => {
-  const url = `https://garage-best-team-ever.tk`;
+  const url = 'https://garage-best-team-ever.tk'
 
   const deleteRequest = (id) => {
-    const api = `/task/${id}`;
+    const api = `/task/${id}`
     console.log(url + api)
 
     fetch(url + api, {
       method: 'DELETE'
     })
-}
+  }
 
   const deleteTask = () => {
-    const container = document.getElementsByClassName(styles.TaskContainer)[0];
-    deleteRequest(container.id);
+    const container = document.getElementsByClassName(styles.TaskContainer)[0]
+    deleteRequest(container.id)
   }
 
   const selectedLabels = labels => {
-		console.log(labels);
-	};
+    console.log(labels)
+  }
 
   return (
     <div className={styles.TaskContainer} id={id}>
@@ -55,7 +55,7 @@ const Task = ({ id, title, bodyTask }) => {
 
         <textarea className={styles.TaskInput} defaultValue={ bodyTask }/>
         <div className={styles.TaskActions}>
-          <Labels selectedLabels={selectedLabels}  labels={['Label1', 'Label2']}/>
+          <Labels selectedLabels={selectedLabels} labels={['Label1', 'Label2']}/>
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>
               <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

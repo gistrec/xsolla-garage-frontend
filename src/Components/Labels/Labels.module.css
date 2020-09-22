@@ -16,9 +16,9 @@
  .labelsInput input {
 	 flex: 1;
 	 border: none;
-	 height: 46px;
+	 /*height: 30px;*/
 	 font-size: 14px;
-	 padding: 4px 0 0 0;
+	 /*padding: 4px 0 0 0;*/
 }
  .labelsInput input:focus {
 	 outline: transparent;
@@ -59,6 +59,23 @@
 	 background: #fff;
 	 cursor: pointer;
 }
+
+ .addLabel {
+	 display: flex;
+ }
+
+ .buttonPlus {
+	 background: #ffffff;
+	 border: none;
+	 cursor: pointer;
+	 font-weight: 600;
+	 letter-spacing: 1px;
+	 text-transform: uppercase;
+	 color: #0760e0;
+	 font-size: 25px;
+	 margin-right: 2px;
+
+ }
  @media screen and (max-width: 567px) {
 	 .labelsInput {
 		 width: calc(100vw - 32px);
