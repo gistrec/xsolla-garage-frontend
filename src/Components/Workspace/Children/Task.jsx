@@ -56,7 +56,6 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   const deleteTask = () => {
     const api = `/task/${taskId}`
-    console.log(url + api)
 
     fetch(url + api, {
       method: 'DELETE'
