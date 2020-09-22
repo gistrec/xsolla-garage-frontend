@@ -20,11 +20,15 @@
 
 .CheckboxTitleWrapper {
     display: flex;
+    width: 100%;
+    min-width: 200px; /*пока что захардкодила, что div, содержащий title и date не может быть меньше 200px */
+    padding-right: 12px;
     align-items: center;
 }
 
 .TitleDataWrapper {
     display: flex;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -34,7 +38,7 @@
 }
 
 .Title {
-    width: 200px;
+    width: 100%;
     height: 24px;
     resize: none;
     font-family: 'Graphik', sans-serif;
@@ -42,14 +46,15 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 24px;
-    overflow: hidden;
     border: none;
     border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Title:focus {
     outline: none;
-    border: 1px solid #747E8A;
 }
 
 time {

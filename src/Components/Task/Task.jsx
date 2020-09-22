@@ -1,9 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './TaskStyles.module.css'
 import Tags from '../Tags/Tags'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import moment from 'moment'
 
 const Task = ({ id, title, bodyTask }) => {
-  const url = 'https://garage-best-team-ever.tk'
+  
+  const [on, setOn] = useState(true)
+  const { transcript } = useSpeechRecognition()
+  
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null
+  }
+
+  function handleClick (e) {
+    e.preventDefault()
+    setOn(on => !on)
+    console.log(on)
+    if (on === true) {
+      SpeechRecognition.startListening({ continuous: true, language: 'ru' })
+    } else if (on === false) {
+      SpeechRecognition.stopListening()
+      console.log(on + ' recording stopped')
+    }
+  }
+
+ /* const url = 'https://garage-analytical-back.herokuapp.com'
+
+  const sendText = () => {
+    const api = '/date_tags'
+    const date = moment().format('YYYY-MM-DD HH:mm:ss')
+    const data = {
+      text_content: transcript,
+      current_date: date
+    }
+
+    fetch(url + api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    })
+      .then((data) => {
+        console.log(data)
+      })
+  } */
+
+  const url = `https://garage-best-team-ever.tk`;
 
   const deleteRequest = (id) => {
     const api = `/task/${id}`
@@ -22,7 +68,7 @@ const Task = ({ id, title, bodyTask }) => {
   const selectedTags = tags => {
     console.log(tags)
   }
-
+    
   return (
     <div className={styles.TaskContainer} id={id}>
       <details>
@@ -30,7 +76,7 @@ const Task = ({ id, title, bodyTask }) => {
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
             <div className={styles.TitleDataWrapper}>
-              <input maxLength="100" className={styles.Title} defaultValue={title}/>
+              <input maxLength="100" placeholder="Add task title here" className={styles.Title} defaultValue={title}/>
               <time>2020-09-20, 12:00</time>
             </div>
           </div>
@@ -40,7 +86,8 @@ const Task = ({ id, title, bodyTask }) => {
                 <path d="M5 1H18V3H5V1ZM0 0.5H3V3.5H0V0.5ZM0 7.5H3V10.5H0V7.5ZM0 14.5H3V17.5H0V14.5ZM5 8H18V10H5V8ZM5 15H18V17H5V15Z" fill="#747E8A"/>
               </svg>
             </button>
-            <button className={styles.IconWrapper}>
+            <button className={styles.IconWrapper} onClick={(e) =>
+              handleClick(e)} >
               <svg className={styles.Icon} width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.99993 2C8.20428 2 7.44122 2.31607 6.87861 2.87868C6.316 3.44129 5.99993 4.20435 5.99993 5V9C5.99993 9.79565 6.316 10.5587 6.87861 11.1213C7.44122 11.6839 8.20428 12 8.99993 12C9.79558 12 10.5586 11.6839 11.1213 11.1213C11.6839 10.5587 11.9999 9.79565 11.9999 9V5C11.9999 4.20435 11.6839 3.44129 11.1213 2.87868C10.5586 2.31607 9.79558 2 8.99993 2ZM8.99993 0C9.65654 0 10.3067 0.129329 10.9133 0.380602C11.52 0.631876 12.0712 1.00017 12.5355 1.46447C12.9998 1.92876 13.3681 2.47995 13.6193 3.08658C13.8706 3.69321 13.9999 4.34339 13.9999 5V9C13.9999 10.3261 13.4731 11.5979 12.5355 12.5355C11.5978 13.4732 10.326 14 8.99993 14C7.67385 14 6.40208 13.4732 5.4644 12.5355C4.52672 11.5979 3.99993 10.3261 3.99993 9V5C3.99993 3.67392 4.52672 2.40215 5.4644 1.46447C6.40208 0.526784 7.67385 0 8.99993 0ZM0.0549316 10H2.06993C2.31222 11.6648 3.1458 13.1867 4.41816 14.2873C5.69053 15.3879 7.31661 15.9936 8.99893 15.9936C10.6813 15.9936 12.3073 15.3879 13.5797 14.2873C14.8521 13.1867 15.6856 11.6648 15.9279 10H17.9439C17.7166 12.0287 16.8066 13.9199 15.3631 15.3635C13.9197 16.8071 12.0286 17.7174 9.99993 17.945V22H7.99993V17.945C5.97107 17.7176 4.07972 16.8074 2.63611 15.3638C1.1925 13.9202 0.282344 12.0289 0.0549316 10Z" fill="#747E8A"/>
               </svg>
@@ -53,7 +100,7 @@ const Task = ({ id, title, bodyTask }) => {
           </div>
         </summary>
 
-        <textarea className={styles.TaskInput} defaultValue={ bodyTask }/>
+        <textarea className={styles.TaskInput} defaultValue={ bodyTask } value={transcript}/>
         <div className={styles.TaskActions}>
           <Tags selectedTags={selectedTags} tags={[]}/>
           <div className={styles.DelAndSave}>

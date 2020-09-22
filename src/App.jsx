@@ -20,7 +20,7 @@ class App extends React.Component {
     fetch(`https://garage-best-team-ever.tk/task`).then(data => data.json()).then(json => this.setState({ tasks: json }))
   }
 
-  render() {
+  render () {
     return (
       <div>
         <div className={styles.page}>
@@ -32,7 +32,6 @@ class App extends React.Component {
           <SideBar />
           <Main tasks={this.state.tasks}/>
           <SideMain />
-          
           {/* <CRUD/> */}
         </div>
         <Recorder/>
