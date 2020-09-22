@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 import styles from './TaskStyles.module.css'
+import Tags from '../Tags/Tags'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
 const Task = ({ id, title, bodyTask }) => {
   
   const [on, setOn] = useState(true)
+  const { transcript } = useSpeechRecognition()
+  
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null
+  }
+
   function handleClick (e) {
     e.preventDefault()
     setOn(on => !on)
@@ -13,15 +20,9 @@ const Task = ({ id, title, bodyTask }) => {
     if (on === true) {
       SpeechRecognition.startListening({ continuous: true, language: 'ru' })
     } else if (on === false) {
-      // eslint-disable-next-line no-unused-expressions
       SpeechRecognition.stopListening()
       console.log(on + ' recording stopped')
     }
-  }
-  const { transcript } = useSpeechRecognition()
-
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return null
   }
 
  /* const url = 'https://garage-analytical-back.herokuapp.com'
@@ -51,17 +52,21 @@ const Task = ({ id, title, bodyTask }) => {
   const url = `https://garage-best-team-ever.tk`;
 
   const deleteRequest = (id) => {
-    const api = `/task/${id}`;
+    const api = `/task/${id}`
     console.log(url + api)
 
     fetch(url + api, {
       method: 'DELETE'
     })
-}
+  }
 
   const deleteTask = () => {
-    const container = document.getElementsByClassName(styles.TaskContainer)[0];
-    deleteRequest(container.id);
+    const container = document.getElementsByClassName(styles.TaskContainer)[0]
+    deleteRequest(container.id)
+  }
+
+  const selectedTags = tags => {
+    console.log(tags)
   }
     
   return (
@@ -97,6 +102,7 @@ const Task = ({ id, title, bodyTask }) => {
 
         <textarea className={styles.TaskInput} defaultValue={ bodyTask } value={transcript}/>
         <div className={styles.TaskActions}>
+          <Tags selectedTags={selectedTags} tags={[]}/>
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>
               <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
