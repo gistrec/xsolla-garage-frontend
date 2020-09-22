@@ -2,14 +2,16 @@ import React from 'react'
 import styles from './GreetingStyles.module.css'
 import planner from '../../../Assets/Pictures/Planner.png'
 
-const Greeting = () => {
+const Greeting = ({tasksCount}) => {
+  let userName = "User"
+
   return (
     <div className={styles.greeting}>
       <div className={styles.ImageContainer}>
         <img src={planner} className={styles.grImage}/>
       </div>
-      <p className={styles.helloUser}>Hi, User</p>
-      <p className={styles.currentTasks}>Looks like you've got a lot of work to do!</p>
+      <p className={styles.helloUser}>Привет, {userName}</p>
+      <p className={styles.currentTasks}>Количество текущих задач: <b>{tasksCount}</b></p>
     </div>
   )
 }

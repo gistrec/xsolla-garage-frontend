@@ -3,10 +3,10 @@ import styles from './CalendarAndGreetingStyles.module.css'
 import CalendarReact from './CalendarReact'
 import Greeting from './Greeting'
 
-const CalendarAndGreeting = () => {
+const CalendarAndGreeting = ({tasksCount}) => {
   return (
     <div className={styles.CalendarAndGreeting}>
-      <Greeting/>
+      <Greeting tasksCount={tasksCount}/>
       <CalendarReact/>
     </div>
   )

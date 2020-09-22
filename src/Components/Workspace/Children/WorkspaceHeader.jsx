@@ -8,8 +8,8 @@ const WorkspaceHeader = ( props ) => {
 
   return (
     <div className={styles.header}>
-      <h2 className={styles.title}> Tasks </h2>
-      <button className={styles.addTask} onClick={renderTask}>+ NEW TASK</button>
+      <h2 className={styles.title}>Задачи</h2>
+      <button className={styles.addTask} onClick={renderTask}>+ СОЗДАТЬ</button>
     </div>
   )
 }

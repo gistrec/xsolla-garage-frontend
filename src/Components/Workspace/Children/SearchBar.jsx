@@ -4,7 +4,7 @@ import styles from './SearchBarStyles.module.css'
 const SearchBar = () => {
     return (
         <div className={styles.searchBox}>
-            <input className={styles.searchText} type="text" placeholder="Search for active tasks" />
+            <input className={styles.searchText} type="text" placeholder="Поиск активных задач" />
             <a className={styles.searchBtn} href="#">
                 <i>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

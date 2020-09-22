@@ -21,6 +21,8 @@ class App extends React.Component {
   }
 
   render () {
+    const tasksCount = this.state.tasks.length
+
     return (
       <div>
         <div className={styles.page}>
@@ -29,10 +31,10 @@ class App extends React.Component {
           <SideHeader />
 
           <SideMain />
-          <SideBar />
+          <SideBar tasksCount={tasksCount}/>
           <Workspace tasks={this.state.tasks}/>
           <SideMain />
-          {console.log(this.state.tasks)}
+          {}
         </div>
         <Recorder/>
       </div>

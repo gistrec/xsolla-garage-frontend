@@ -29,7 +29,7 @@ const Tags = props => {
         ))}
         <form className={styles.addTag} onSubmit={event => addTags(event)}>
           <button className={styles.addTagButton} type={'submit'}>+</button>
-          <input type="text" maxLength="50" placeholder="Add a tag here" onChange={e => setInput(e.target.value)}/>
+          <input type="text" maxLength="50" placeholder="Добавить тег" onChange={e => setInput(e.target.value)}/>
         </form>
       </ul>
     </div>
