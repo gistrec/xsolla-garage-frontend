@@ -71,7 +71,7 @@ const Task = ({ id, title, bodyTask }) => {
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
             <div className={styles.TitleDataWrapper}>
-              <input maxLength="100" className={styles.Title} defaultValue={title}/>
+              <input maxLength="100" placeholder="Add task title here" className={styles.Title} defaultValue={title}/>
               <time>2020-09-20, 12:00</time>
             </div>
           </div>
