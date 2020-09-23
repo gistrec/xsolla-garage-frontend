@@ -8,7 +8,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const url = 'https://garage-best-team-ever.tk'
 
   const [on, setOn] = useState(true)
-  const { transcript } = useSpeechRecognition()
+  const { transcript, finalTranscript, listening, resetTranscript } = useSpeechRecognition()
 
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
@@ -19,12 +19,18 @@ const Task = ({ id, title, bodyTask, tags }) => {
     if (typeof tags !== 'undefined') { return (<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>) }
   }
 
+  const renderTranscript = () => {
+    if (!on)
+      return transcript;
+  }
+
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
   }
 
   function handleClick (e) {
     e.preventDefault()
+    resetTranscript();
     setOn(on => !on)
     console.log(on)
     if (on === true) {
@@ -102,7 +108,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           </div>
         </summary>
 
-        <textarea className={styles.TaskInput} defaultValue={bodyTask === '' ? transcript : bodyTask}/>
+        <textarea className={styles.TaskInput} value={renderTranscript()}/>
         <div className={styles.TaskActions}>
           {
             // Если теги переданы, то они рендерятся
