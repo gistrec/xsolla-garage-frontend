@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './TaskStyles.module.css'
 import Tags from './Tags'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
@@ -6,8 +6,20 @@ import moment from 'moment'
 
 const Task = ({ id, title, bodyTask, tags }) => {
   
+  const url = `https://garage-best-team-ever.tk`;
+
   const [on, setOn] = useState(true)
   const { transcript } = useSpeechRecognition()
+
+  // Айдишник задачи, помещаемый в state после рендера компонента
+  const [taskId, setId] = useState(-1);
+  useEffect(() => {console.log(id); setId(id)}, []);
+
+  // Рендерит теги только если они есть
+  const renderTags = () => {
+    if (typeof tags !== 'undefined')
+     return(<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>);
+  }
   
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
@@ -49,20 +61,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
       })
   } */
 
-  const url = `https://garage-best-team-ever.tk`;
-
-  const deleteRequest = (id) => {
-    const api = `/task/${id}`
-    console.log(url + api)
+  const deleteTask = () => {
+    const api = `/task/${taskId}`
 
     fetch(url + api, {
       method: 'DELETE'
     })
-  }
-
-  const deleteTask = () => {
-    const container = document.getElementsByClassName(styles.TaskContainer)[0]
-    deleteRequest(container.id)
   }
 
   const selectedTags = tags => {
@@ -70,13 +74,13 @@ const Task = ({ id, title, bodyTask, tags }) => {
   }
     
   return (
-    <div className={styles.TaskContainer} id={id}>
+    <div className={styles.TaskContainer}>
       <details>
         <summary className={styles.TaskTitleContainer}>
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
             <div className={styles.TitleDataWrapper}>
-              <input maxLength="100" placeholder="Add task title here" className={styles.Title} defaultValue={title}/>
+              <input maxLength="100" placeholder="Добавьте название задачи" className={styles.Title} defaultValue={title}/>
               <time>2020-09-20, 12:00</time>
             </div>
           </div>
@@ -102,7 +106,10 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
         <textarea className={styles.TaskInput} defaultValue={bodyTask === "" ? transcript : bodyTask}/>
         <div className={styles.TaskActions}>
-          <Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>
+          {
+            // Если теги переданы, то они рендерятся
+            renderTags()
+          }
           <div className={styles.DelAndSave}>
             <button className={styles.DelIconContainer}>
               <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

@@ -10,7 +10,7 @@ const Workspace = ({ tasks }) => {
 
   let task = () => {
     if (isOpen)
-      return <Task/>
+      return <Task tags={[]}/>
   }
 
   const renderTask = () => {
