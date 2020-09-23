@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './TaskStyles.module.css'
 import Tags from './Tags'
+import TextArea from './TextArea'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
@@ -8,17 +9,18 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const url = 'https://garage-best-team-ever.tk'
 
   const [on, setOn] = useState(true)
-  const { transcript, finalTranscript, listening, resetTranscript } = useSpeechRecognition()
+  const { transcript, listening, resetTranscript } = useSpeechRecognition()
 
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
-  useEffect(() => { console.log(id); setId(id) }, [])
+  useEffect(() => { setId(id) }, [])
 
   // Рендерит теги только если они есть
   const renderTags = () => {
     if (typeof tags !== 'undefined') { return (<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>) }
   }
 
+  // Распознанная речь рендерится только в том таске, для которого включена запись
   const renderTranscript = () => {
     if (!on)
       return transcript;
@@ -32,12 +34,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
     e.preventDefault()
     resetTranscript();
     setOn(on => !on)
-    console.log(on)
+    //console.log(on)
     if (on === true) {
       SpeechRecognition.startListening({ continuous: true, language: 'ru' })
     } else if (on === false) {
       SpeechRecognition.stopListening()
-      console.log(on + ' recording stopped')
+      //console.log(on + ' recording stopped')
     }
   }
 
@@ -108,7 +110,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           </div>
         </summary>
 
-        <textarea className={styles.TaskInput} value={renderTranscript()}/>
+        <TextArea text={renderTranscript} isListening={listening}/>
         <div className={styles.TaskActions}>
           {
             // Если теги переданы, то они рендерятся
