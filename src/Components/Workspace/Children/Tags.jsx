@@ -15,6 +15,7 @@ const Tags = props => {
       setTags([...tags, input])
       props.selectedTags([...tags, input])
       event.target.reset()
+      setInput("")
     }
   }
 
