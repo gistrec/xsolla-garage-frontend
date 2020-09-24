@@ -3,30 +3,30 @@ import styles from './TextAreaStyles.module.css'
 
 const TextArea = (props) => {
     // Рендерящийся текст
-    const [text, setText] = useState('');
+    const [text, setText] = useState('')
 
     // Обрабатывающаяся речь
-    const [speech, setSpeech] = useState('');
+    const [speech, setSpeech] = useState('')
 
     // Итоговый текст после обработки речи
-    const [finalText, setFinalText] = useState('');
+    const [finalText, setFinalText] = useState('')
 
     // Обновление текстового поля
     useEffect(() => {
-        const newSpeech = props.text();
+        const newSpeech = props.text()
 
         // Когда приходит новая обработанная строка, обновляется только она
         if (typeof newSpeech !== 'undefined'){
             if (props.isListening) {
-                setSpeech(newSpeech);
-                setText(finalText + speech);
+                setSpeech(newSpeech)
+                setText(speech !== '' ? finalText + speech + ' ' : finalText + speech)
             }
         }
 
         // Как только заканчивается обработка речи, устанавливается итоговая строка - конкатенация старой строки и речи
         if (!props.isListening) {
-            setFinalText(text);
-            setSpeech('');
+            setFinalText(text)
+            setSpeech('')
         }
     }, [props])
 
@@ -34,12 +34,12 @@ const TextArea = (props) => {
         <textarea className={styles.TaskInput} value={text} 
             onChange={
                 (e) => {
-                    setText(e.target.value);
-                    setFinalText(e.target.value);
+                    setText(e.target.value)
+                    setFinalText(e.target.value)
                 }
             }
         />
     )
 }
 
-export default TextArea;
+export default TextArea

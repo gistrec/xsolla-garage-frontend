@@ -29,17 +29,15 @@ const Task = ({ id, title, bodyTask, tags }) => {
     return null
   }
 
-  function handleClick (e) {
+  function handleClick(e) {
     e.preventDefault()
-    resetTranscript()
     setOn(on => !on)
-    // console.log(on)
     if (on === true) {
       SpeechRecognition.startListening({ continuous: true, language: 'ru' })
     } else if (on === false) {
       SpeechRecognition.stopListening()
-      // console.log(on + ' recording stopped')
     }
+    resetTranscript()
   }
 
   /* const url = 'https://garage-analytical-back.herokuapp.com'
