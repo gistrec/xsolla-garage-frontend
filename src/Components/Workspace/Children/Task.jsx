@@ -66,7 +66,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
       })
   } */
 
-    const saveTask = () => {
+  const saveTask = () => {
     const api = '/task'
     const date = moment().format('YYYY-MM-DD HH:mm:ss')
     const title = getTitleFromTaskText(text)
@@ -75,10 +75,10 @@ const Task = ({ id, title, bodyTask, tags }) => {
       title: title, //получает заголовок из задачи, пока что не научилась выцеплять его из инпута
       text_content: text, //пока что работает только для ввода с клавиатуры, обрезает последний символ
       date_create: date,
-    //tags: tags это неправильно, тэги надо передавать в другом виде
-    //date_target: ,
-    //is_important: true,
-    //is_urgent: true
+      //tags: ,
+      //date_target: ,
+      //is_important: true,
+      //is_urgent: true
     }
 
     fetch(url + api, {
@@ -97,10 +97,15 @@ const Task = ({ id, title, bodyTask, tags }) => {
       method: 'DELETE'
     }).then(() => setVisible(false))
   }
-
+//--------------------------------
+  // Здесь теги мапятся в массив объектов
   const selectedTags = tags => {
-    console.log(tags)
+    return tags.map(item => {
+      const objItem = { name: item }
+      return objItem
+    })
   }
+//---------------------------------
 
   // Обрезает текст задачи, возвращает первые три слова + ...
   function getTitleFromTaskText(taskText) {
