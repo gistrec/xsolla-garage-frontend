@@ -76,6 +76,11 @@ const Task = ({ id, title, bodyTask, tags }) => {
     console.log(tags)
   }
 
+  // Обрезает текст задачи, возвращает первые три слова + ...
+  function getTitleFromTaskText(taskText) {
+    return taskText.split(" ", 3).join(" ") + "..."
+  }
+  
   return (
     <div className={styles.TaskContainer}>
       <details>

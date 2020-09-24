@@ -10,7 +10,7 @@ const Greeting = ({tasksCount}) => {
       <div className={styles.ImageContainer}>
         <img src={planner} className={styles.grImage}/>
       </div>
-      <p className={styles.helloUser}>Привет, {userName}</p>
+      <p className={styles.helloUser}>Привет, {userName}!</p>
       <p className={styles.currentTasks}>Количество текущих задач: <b>{tasksCount}</b></p>
     </div>
   )

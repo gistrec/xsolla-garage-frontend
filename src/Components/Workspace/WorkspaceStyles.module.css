@@ -1,8 +1,27 @@
+*{
+    scrollbar-width: thin;
+    scrollbar-color:#747E8A #FFFFFF;
+}
+  
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #747E8A;
+    border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #424242;
+}
+
 .workspace {
     height: 956px;
     border-right: 1px solid rgba(0, 36, 77, 0.08);
     border-left: 1px solid rgba(0, 36, 77, 0.08);
 }
- form {
- }
-
