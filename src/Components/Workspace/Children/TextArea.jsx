@@ -39,9 +39,11 @@ const TextArea = (props) => {
         <textarea className={styles.TaskInput} value={text} 
             onChange={
                 (e) => {
-                    setText(e.target.value)
-                    setFinalText(e.target.value)
-                    props.getText(finalText)
+                    if (!props.isListening) {    
+                        props.getText(e.target.value);                    
+                        setText(e.target.value)
+                        setFinalText(e.target.value)
+                    }
                 }
             }
         />
