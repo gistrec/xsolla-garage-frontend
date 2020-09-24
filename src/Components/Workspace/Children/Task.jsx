@@ -11,6 +11,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [on, setOn] = useState(true)
   const [visible, setVisible] = useState(true)
   const { transcript, listening, resetTranscript } = useSpeechRecognition()
+  const [text, setText] = useState('')
 
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
@@ -65,6 +66,30 @@ const Task = ({ id, title, bodyTask, tags }) => {
       })
   } */
 
+    const saveTask = () => {
+    const api = '/task'
+    const date = moment().format('YYYY-MM-DD HH:mm:ss')
+    const title = getTitleFromTaskText(text)
+    const data = {
+      user_id: 0,
+      title: title, //получает заголовок из задачи, пока что не научилась выцеплять его из инпута
+      text_content: text, //пока что работает только для ввода с клавиатуры, обрезает последний символ
+      date_create: date,
+    //tags: tags это неправильно, тэги надо передавать в другом виде
+    //date_target: ,
+    //is_important: true,
+    //is_urgent: true
+    }
+
+    fetch(url + api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
   const deleteTask = () => {
     const api = `/task/${taskId}`
 
@@ -81,7 +106,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
   function getTitleFromTaskText(taskText) {
     return taskText.split(" ", 3).join(" ") + "..."
   }
-  
+
+  // используется для получения печатного текста из дочернего компонента
+  const getText = (textFromTextArea) => {
+    setText(textFromTextArea)
+  }
+
   return (
     <div className={styles.TaskContainer} style={{display: !visible && "none"}}>
       <details>
@@ -112,7 +142,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
             </button>
           </div>
         </summary>
-        <TextArea defaultText={bodyTask} text={renderTranscript} isListening={listening}/>
+        <TextArea defaultText={bodyTask} text={renderTranscript} isListening={listening} getText={getText}/>
       </details>
       <div className={styles.TaskActions}>
         {
@@ -120,7 +150,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           renderTags()
         }
         <div className={styles.DelAndSave}>
-          <button className={styles.DelIconContainer}>
+          <button className={styles.DelIconContainer} onClick={saveTask}>
             <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A"/>
             </svg>
@@ -133,7 +163,6 @@ const Task = ({ id, title, bodyTask, tags }) => {
         </div>
       </div>
     </div>
-
   )
 }
 export default Task

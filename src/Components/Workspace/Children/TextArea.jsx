@@ -13,7 +13,7 @@ const TextArea = (props) => {
 
     // Обновление текстового поля
     useEffect(() => {
-        const newSpeech = props.text()
+        const newSpeech = props.text
 
         // Когда приходит новая обработанная строка, обновляется только она
         if (typeof newSpeech !== 'undefined'){
@@ -36,6 +36,7 @@ const TextArea = (props) => {
                 (e) => {
                     setText(e.target.value)
                     setFinalText(e.target.value)
+                    props.getText(text)
                 }
             }
         />
