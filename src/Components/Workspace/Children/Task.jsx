@@ -70,8 +70,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
     fetch(url + api, {
       method: 'DELETE'
-    })
-    setVisible(false)
+    }).then(() => setVisible(false))
   }
 
   const selectedTags = tags => {
