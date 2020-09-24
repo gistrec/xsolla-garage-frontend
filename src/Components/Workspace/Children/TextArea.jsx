@@ -28,7 +28,12 @@ const TextArea = (props) => {
             setFinalText(text)
             setSpeech('')
         }
-    }, [props])
+    }, [props.text, props.isListening])
+
+    useEffect(() => {
+        if (!props.isListening)
+            props.getText(text)
+    }, [props.isListening])
 
     return(
         <textarea className={styles.TaskInput} value={text} 
@@ -36,7 +41,7 @@ const TextArea = (props) => {
                 (e) => {
                     setText(e.target.value)
                     setFinalText(e.target.value)
-                    props.getText(text)
+                    props.getText(finalText)
                 }
             }
         />
