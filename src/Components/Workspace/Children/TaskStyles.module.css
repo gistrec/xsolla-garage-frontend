@@ -153,6 +153,7 @@ button:focus {
 }
 
 .DelIconContainer {
+    padding-top: 4px;
     padding-right: 12px;
     cursor:pointer;
     border: none;

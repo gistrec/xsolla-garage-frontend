@@ -12,6 +12,8 @@
 .searchText {
     width: 70%; /*при большей ширине ломается вёрстка когда меняешь размер окна браузера*/
     border: none;
+    font-family: 'Graphik', sans-serif;
+    font-size: 15px;
 }
 
 .searchText:focus {
