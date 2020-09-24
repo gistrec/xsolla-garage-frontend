@@ -106,7 +106,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
             </button>
           </div>
         </summary>
-        <TextArea text={renderTranscript} isListening={listening}/>
+        <TextArea defaultText={bodyTask} text={renderTranscript} isListening={listening}/>
       </details>
       <div className={styles.TaskActions}>
         {

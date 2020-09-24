@@ -3,7 +3,7 @@ import styles from './TextAreaStyles.module.css'
 
 const TextArea = (props) => {
     // Рендерящийся текст
-    const [text, setText] = useState('')
+    const [text, setText] = useState(typeof props.defaultText !== 'undefined' ? props.defaultText : '')
 
     // Обрабатывающаяся речь
     const [speech, setSpeech] = useState('')
