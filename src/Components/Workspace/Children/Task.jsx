@@ -1,43 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import styles from './TaskStyles.module.css'
 import Tags from './Tags'
+import TextArea from './TextArea'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
 const Task = ({ id, title, bodyTask, tags }) => {
-  
-  const url = `https://garage-best-team-ever.tk`;
+  const url = 'https://garage-best-team-ever.tk'
 
   const [on, setOn] = useState(true)
-  const { transcript } = useSpeechRecognition()
+  const { transcript, listening, resetTranscript } = useSpeechRecognition()
 
   // Айдишник задачи, помещаемый в state после рендера компонента
-  const [taskId, setId] = useState(-1);
-  useEffect(() => {console.log(id); setId(id)}, []);
+  const [taskId, setId] = useState(-1)
+  useEffect(() => { setId(id) }, [])
 
   // Рендерит теги только если они есть
   const renderTags = () => {
-    if (typeof tags !== 'undefined')
-     return(<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>);
+    if (typeof tags !== 'undefined') { return (<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>) }
   }
-  
+
+  // Распознанная речь рендерится только в том таске, для которого включена запись
+  const renderTranscript = () => {
+    if (!on) { return transcript }
+  }
+
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
   }
 
-  function handleClick (e) {
+  function handleClick(e) {
     e.preventDefault()
     setOn(on => !on)
-    console.log(on)
     if (on === true) {
       SpeechRecognition.startListening({ continuous: true, language: 'ru' })
     } else if (on === false) {
       SpeechRecognition.stopListening()
-      console.log(on + ' recording stopped')
     }
+    resetTranscript()
   }
 
- /* const url = 'https://garage-analytical-back.herokuapp.com'
+  /* const url = 'https://garage-analytical-back.herokuapp.com'
 
   const sendText = () => {
     const api = '/date_tags'
@@ -77,7 +80,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
   function getTitleFromTaskText(taskText) {
     return taskText.split(" ", 3).join(" ") + "..."
   }
-    
+  
   return (
     <div className={styles.TaskContainer}>
       <details>
@@ -97,8 +100,8 @@ const Task = ({ id, title, bodyTask, tags }) => {
             </button>
             <button className={styles.IconWrapper} onClick={(e) =>
               handleClick(e)} >
-              <svg className={styles.Icon} width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.99993 2C8.20428 2 7.44122 2.31607 6.87861 2.87868C6.316 3.44129 5.99993 4.20435 5.99993 5V9C5.99993 9.79565 6.316 10.5587 6.87861 11.1213C7.44122 11.6839 8.20428 12 8.99993 12C9.79558 12 10.5586 11.6839 11.1213 11.1213C11.6839 10.5587 11.9999 9.79565 11.9999 9V5C11.9999 4.20435 11.6839 3.44129 11.1213 2.87868C10.5586 2.31607 9.79558 2 8.99993 2ZM8.99993 0C9.65654 0 10.3067 0.129329 10.9133 0.380602C11.52 0.631876 12.0712 1.00017 12.5355 1.46447C12.9998 1.92876 13.3681 2.47995 13.6193 3.08658C13.8706 3.69321 13.9999 4.34339 13.9999 5V9C13.9999 10.3261 13.4731 11.5979 12.5355 12.5355C11.5978 13.4732 10.326 14 8.99993 14C7.67385 14 6.40208 13.4732 5.4644 12.5355C4.52672 11.5979 3.99993 10.3261 3.99993 9V5C3.99993 3.67392 4.52672 2.40215 5.4644 1.46447C6.40208 0.526784 7.67385 0 8.99993 0ZM0.0549316 10H2.06993C2.31222 11.6648 3.1458 13.1867 4.41816 14.2873C5.69053 15.3879 7.31661 15.9936 8.99893 15.9936C10.6813 15.9936 12.3073 15.3879 13.5797 14.2873C14.8521 13.1867 15.6856 11.6648 15.9279 10H17.9439C17.7166 12.0287 16.8066 13.9199 15.3631 15.3635C13.9197 16.8071 12.0286 17.7174 9.99993 17.945V22H7.99993V17.945C5.97107 17.7176 4.07972 16.8074 2.63611 15.3638C1.1925 13.9202 0.282344 12.0289 0.0549316 10Z" fill="#747E8A"/>
+              <svg fill="none" className={styles.Icon} width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
+                <path fill={on === false ? '#eb002f' : '#747E8A'} d="M8.99993 2C8.20428 2 7.44122 2.31607 6.87861 2.87868C6.316 3.44129 5.99993 4.20435 5.99993 5V9C5.99993 9.79565 6.316 10.5587 6.87861 11.1213C7.44122 11.6839 8.20428 12 8.99993 12C9.79558 12 10.5586 11.6839 11.1213 11.1213C11.6839 10.5587 11.9999 9.79565 11.9999 9V5C11.9999 4.20435 11.6839 3.44129 11.1213 2.87868C10.5586 2.31607 9.79558 2 8.99993 2ZM8.99993 0C9.65654 0 10.3067 0.129329 10.9133 0.380602C11.52 0.631876 12.0712 1.00017 12.5355 1.46447C12.9998 1.92876 13.3681 2.47995 13.6193 3.08658C13.8706 3.69321 13.9999 4.34339 13.9999 5V9C13.9999 10.3261 13.4731 11.5979 12.5355 12.5355C11.5978 13.4732 10.326 14 8.99993 14C7.67385 14 6.40208 13.4732 5.4644 12.5355C4.52672 11.5979 3.99993 10.3261 3.99993 9V5C3.99993 3.67392 4.52672 2.40215 5.4644 1.46447C6.40208 0.526784 7.67385 0 8.99993 0ZM0.0549316 10H2.06993C2.31222 11.6648 3.1458 13.1867 4.41816 14.2873C5.69053 15.3879 7.31661 15.9936 8.99893 15.9936C10.6813 15.9936 12.3073 15.3879 13.5797 14.2873C14.8521 13.1867 15.6856 11.6648 15.9279 10H17.9439C17.7166 12.0287 16.8066 13.9199 15.3631 15.3635C13.9197 16.8071 12.0286 17.7174 9.99993 17.945V22H7.99993V17.945C5.97107 17.7176 4.07972 16.8074 2.63611 15.3638C1.1925 13.9202 0.282344 12.0289 0.0549316 10Z"/>
               </svg>
             </button>
             <button className={styles.IconWrapper}>
@@ -108,27 +111,26 @@ const Task = ({ id, title, bodyTask, tags }) => {
             </button>
           </div>
         </summary>
-
-        <textarea className={styles.TaskInput} defaultValue={bodyTask === "" ? transcript : bodyTask}/>
-        <div className={styles.TaskActions}>
-          {
-            // Если теги переданы, то они рендерятся
-            renderTags()
-          }
-          <div className={styles.DelAndSave}>
-            <button className={styles.DelIconContainer}>
-              <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A"/>
-              </svg>
-            </button>
-            <button className={styles.DelIconContainer} onClick={ deleteTask }>
-              <svg className={styles.Icon + ' ' + styles.IconBottom} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M5 8v12c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2V8c0 0-.447 0-1 0H6C5.447 8 5 8 5 8zM3 6L8 6 16 6 21 6 21 4 16.618 4 15 2 9 2 7.382 4 3 4z" fill="#747E8A"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+        <TextArea defaultText={bodyTask} text={renderTranscript} isListening={listening}/>
       </details>
+      <div className={styles.TaskActions}>
+        {
+          // Если теги переданы, то они рендерятся
+          renderTags()
+        }
+        <div className={styles.DelAndSave}>
+          <button className={styles.DelIconContainer}>
+            <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A"/>
+            </svg>
+          </button>
+          <button className={styles.DelIconContainer} onClick={ deleteTask }>
+            <svg className={styles.Icon + ' ' + styles.IconBottom} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M5 8v12c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2V8c0 0-.447 0-1 0H6C5.447 8 5 8 5 8zM3 6L8 6 16 6 21 6 21 4 16.618 4 15 2 9 2 7.382 4 3 4z" fill="#747E8A"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
 
   )

@@ -1,28 +1,26 @@
-import React from 'react';
+import React from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import styles from './Recorder.module.css'
 import moment from 'moment'
 
-
 const Recorder = () => {
-
   const { transcript, resetTranscript } = useSpeechRecognition()
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
   }
 
-  const url = `https://garage-best-team-ever.tk`;
+  const url = 'https://garage-best-team-ever.tk'
 
   const sendText = () => {
-    const api = `/task`;
-  /* const date = moment().format('YYYY-MM-DD HH:mm:ss'); */
+    const api = '/task'
+    /* const date = moment().format('YYYY-MM-DD HH:mm:ss'); */
     const data = {
-      "title": "New task",
-      "text_content": transcript,
-      "date_target": "2020-09-25 12:00:00"
+      title: 'New task',
+      text_content: transcript,
+      date_target: '2020-09-25 12:00:00'
     /* "current_date": date */
-    };
+    }
 
     fetch(url + api, {
       method: 'POST',
@@ -31,11 +29,11 @@ const Recorder = () => {
       },
       body: JSON.stringify(data)
     }).then((response) => {
-      return response.json();
+      return response.json()
     })
-    .then((data) => {
-      console.log(data);
-    });
+      .then((data) => {
+        console.log(data)
+      })
   }
 
   return (
@@ -49,7 +47,7 @@ const Recorder = () => {
       <br/>
       <br/>
       <div className={styles.textContainer}>
-        <p className={styles.text}> {transcript} </p>
+        <p className={styles.text}/>
       </div>
       <br/>
     </div>
