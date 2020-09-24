@@ -22,8 +22,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   // Распознанная речь рендерится только в том таске, для которого включена запись
   const renderTranscript = () => {
-    if (!on)
-      return transcript;
+    if (!on) { return transcript }
   }
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
@@ -32,14 +31,14 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   function handleClick (e) {
     e.preventDefault()
-    resetTranscript();
+    resetTranscript()
     setOn(on => !on)
-    //console.log(on)
+    // console.log(on)
     if (on === true) {
       SpeechRecognition.startListening({ continuous: true, language: 'ru' })
     } else if (on === false) {
       SpeechRecognition.stopListening()
-      //console.log(on + ' recording stopped')
+      // console.log(on + ' recording stopped')
     }
   }
 
@@ -109,27 +108,26 @@ const Task = ({ id, title, bodyTask, tags }) => {
             </button>
           </div>
         </summary>
-
         <TextArea text={renderTranscript} isListening={listening}/>
-        <div className={styles.TaskActions}>
-          {
-            // Если теги переданы, то они рендерятся
-            renderTags()
-          }
-          <div className={styles.DelAndSave}>
-            <button className={styles.DelIconContainer}>
-              <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A"/>
-              </svg>
-            </button>
-            <button className={styles.DelIconContainer} onClick={ deleteTask }>
-              <svg className={styles.Icon + ' ' + styles.IconBottom} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M5 8v12c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2V8c0 0-.447 0-1 0H6C5.447 8 5 8 5 8zM3 6L8 6 16 6 21 6 21 4 16.618 4 15 2 9 2 7.382 4 3 4z" fill="#747E8A"/>
-              </svg>
-            </button>
-          </div>
-        </div>
       </details>
+      <div className={styles.TaskActions}>
+        {
+          // Если теги переданы, то они рендерятся
+          renderTags()
+        }
+        <div className={styles.DelAndSave}>
+          <button className={styles.DelIconContainer}>
+            <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A"/>
+            </svg>
+          </button>
+          <button className={styles.DelIconContainer} onClick={ deleteTask }>
+            <svg className={styles.Icon + ' ' + styles.IconBottom} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M5 8v12c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2V8c0 0-.447 0-1 0H6C5.447 8 5 8 5 8zM3 6L8 6 16 6 21 6 21 4 16.618 4 15 2 9 2 7.382 4 3 4z" fill="#747E8A"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
 
   )
