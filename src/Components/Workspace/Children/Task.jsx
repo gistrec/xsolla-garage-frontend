@@ -114,8 +114,15 @@ const Task = ({ id, title, bodyTask, tags }) => {
   // Обрезает текст задачи, возвращает первые три слова + ...
   function getTitle() {
     console.log(taskTitle)
-    if (taskTitle === '')
-      return text.trim().split(" ", 3).join(" ") + "...";
+    if (taskTitle === '') {
+      const bodyTitle = text.trim().split(" ", 3).join(" ");
+      if (bodyTitle.length > 20)
+          return bodyTitle.substring(0, 20) + "...";
+        else if (bodyTitle === text.trim())
+          return bodyTitle
+        else
+          return bodyTitle + "...";
+    }
     else
       return taskTitle;
   }
