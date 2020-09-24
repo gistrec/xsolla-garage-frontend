@@ -12,6 +12,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [visible, setVisible] = useState(true)
   const { transcript, listening, resetTranscript } = useSpeechRecognition()
   const [text, setText] = useState('')
+  const [allTags, setAllTags] = useState([])
 
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
@@ -19,7 +20,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   // Рендерит теги только если они есть
   const renderTags = () => {
-    if (typeof tags !== 'undefined') { return (<Tags selectedTags={selectedTags} tags={tags.map(tag => tag.name)}/>) }
+    if (typeof tags !== 'undefined') { return (<Tags tags={tags.map(tag => tag.name)} setAllTags={setAllTags}/>) }
   }
 
   // Распознанная речь рендерится только в том таске, для которого включена запись
@@ -68,17 +69,13 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   const saveTask = () => {
     const api = '/task'
-    const date = moment().format('YYYY-MM-DD HH:mm:ss')
     const title = getTitleFromTaskText(text)
+    const tags = mapTags(allTags) //тэги преобразовываются из массива строк в массив объектов
     const data = {
       user_id: 0,
-      title: title, //получает заголовок из задачи, пока что не научилась выцеплять его из инпута
+      title: title, //получает заголовок из задачи (первые три слова)
       text_content: text, //пока что работает только для ввода с клавиатуры, обрезает последний символ
-      date_create: date,
-      //tags: ,
-      //date_target: ,
-      //is_important: true,
-      //is_urgent: true
+      tags: tags
     }
 
     fetch(url + api, {
@@ -97,15 +94,14 @@ const Task = ({ id, title, bodyTask, tags }) => {
       method: 'DELETE'
     }).then(() => setVisible(false))
   }
-//--------------------------------
+  
   // Здесь теги мапятся в массив объектов
-  const selectedTags = tags => {
+  const mapTags = tags => {
     return tags.map(item => {
       const objItem = { name: item }
       return objItem
     })
   }
-//---------------------------------
 
   // Обрезает текст задачи, возвращает первые три слова + ...
   function getTitleFromTaskText(taskText) {

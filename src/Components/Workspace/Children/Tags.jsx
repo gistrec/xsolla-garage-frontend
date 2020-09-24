@@ -13,7 +13,7 @@ const Tags = props => {
     event.preventDefault()
     if (input !== '') {
       setTags([...tags, input])
-      props.selectedTags([...tags, input])
+    //props.selectedTags([...tags, input]) зачем это вообще здесь?
       event.target.reset()
       setInput("")
     }
@@ -26,6 +26,7 @@ const Tags = props => {
           <li key={index} className={styles.tag}>
             <span className={styles.tagTitle}>{tag}</span>
             <span className={styles.tagRemoveIcon} onClick={() => removeTags(index)}>x</span>
+            {props.setAllTags(tags) /*здесь теги передаются в родительский компонент*/}
           </li>
         ))}
         <form className={styles.addTag} onSubmit={event => addTags(event)}>
