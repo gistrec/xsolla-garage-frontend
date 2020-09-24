@@ -14,6 +14,14 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [text, setText] = useState('')
   const [allTags, setAllTags] = useState([])
 
+  const [taskTitle, setTaskTitle] = useState('');
+  useEffect(() => {
+    if (typeof title === 'undefined')
+      setTaskTitle('')
+    else
+      setTaskTitle(title)
+  }, []);
+
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
   useEffect(() => { setId(id) }, [])
@@ -69,12 +77,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   const saveTask = () => {
     const api = '/task'
-    const title = getTitleFromTaskText(text)
+    const title = getTitle()
     const tags = mapTags(allTags) //тэги преобразовываются из массива строк в массив объектов
     const data = {
       user_id: 0,
       title: title, //получает заголовок из задачи (первые три слова)
-      text_content: text, //пока что работает только для ввода с клавиатуры, обрезает последний символ
+      text_content: text.trim(), //пока что работает только для ввода с клавиатуры, обрезает последний символ
       tags: tags
     }
 
@@ -104,8 +112,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
   }
 
   // Обрезает текст задачи, возвращает первые три слова + ...
-  function getTitleFromTaskText(taskText) {
-    return taskText.split(" ", 3).join(" ") + "..."
+  function getTitle() {
+    console.log(taskTitle)
+    if (taskTitle === '')
+      return text.trim().split(" ", 3).join(" ") + "...";
+    else
+      return taskTitle;
   }
 
   // используется для получения печатного текста из дочернего компонента
@@ -120,7 +132,8 @@ const Task = ({ id, title, bodyTask, tags }) => {
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
             <div className={styles.TitleDataWrapper}>
-              <input maxLength="100" placeholder="Добавьте название задачи" className={styles.Title} defaultValue={title}/>
+              <input maxLength="100" placeholder="Добавьте название задачи" className={styles.Title} value={taskTitle}
+                onChange={(e) => setTaskTitle(e.target.value)}/>
               <time>2020-09-20, 12:00</time>
             </div>
           </div>
