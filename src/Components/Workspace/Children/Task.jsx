@@ -6,6 +6,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import moment from 'moment'
 
 const Task = ({ id, title, bodyTask, tags }) => {
+
   const url = 'https://garage-best-team-ever.tk'
 
   const [on, setOn] = useState(true)
@@ -13,12 +14,10 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const { transcript, listening, resetTranscript } = useSpeechRecognition()
   const [text, setText] = useState('')
   const [allTags, setAllTags] = useState([])
-
   const [newTag, setNewTag] = useState();
-
-  const [time, setTime] = useState('2020-09-10 13:20:54');
-
+  const [time, setTime] = useState('');
   const [taskTitle, setTaskTitle] = useState('');
+
   useEffect(() => {
     if (typeof title === 'undefined')
       setTaskTitle('')
@@ -55,17 +54,19 @@ const Task = ({ id, title, bodyTask, tags }) => {
     resetTranscript()
   }
 
-  /* const url = 'https://garage-analytical-back.herokuapp.com'
+  //------------------------------------
+  // CRUD + magic
+  //------------------------------------
 
-  const sendText = () => {
-    const api = '/date_tags'
-    const date = moment().format('YYYY-MM-DD HH:mm:ss')
+  const doMagic = () => {
+    const url = 'https://garage-best-team-ever.tk/date_tags';
+
     const data = {
-      text_content: transcript,
-      current_date: date
+      text_content: text,
+      current_date: ''
     }
 
-    fetch(url + api, {
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -76,18 +77,22 @@ const Task = ({ id, title, bodyTask, tags }) => {
     })
       .then((data) => {
         console.log(data)
+        setNewTag(data.tag)
+        setTime(data.date_target)
       })
-  } */
+  }
 
   const saveTask = () => {
     const api = '/task'
     const title = getTitle()
-    const tags = mapTags(allTags) //тэги преобразовываются из массива строк в массив объектов
+    const tags = mapTags(allTags)
+    const dateTarget = time
     const data = {
       user_id: 0,
-      title: title, //получает заголовок из задачи (первые три слова)
-      text_content: text.trim(), //пока что работает только для ввода с клавиатуры, обрезает последний символ
-      tags: tags
+      title: title,
+      text_content: text.trim(),
+      date_target: dateTarget,
+      tags: tags,
     }
 
     fetch(url + api, {
@@ -106,8 +111,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
       method: 'DELETE'
     }).then(() => setVisible(false))
   }
-  
-  // Здесь теги мапятся в массив объектов
+
+  //------------------------------------
+  // Прочие функции
+  //------------------------------------
+
+  // маппинг тегов в массив объектов
   const mapTags = tags => {
     return tags.map(item => {
       const objItem = { name: item }
@@ -115,7 +124,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
     })
   }
 
-  // Обрезает текст задачи, возвращает первые три слова + ...
+  // получение заголовка из текста задачи
   function getTitle() {
     if (taskTitle === '') {
       const bodyTitle = text.trim().split(" ", 3).join(" ");
@@ -130,11 +139,12 @@ const Task = ({ id, title, bodyTask, tags }) => {
       return taskTitle;
   }
 
-  // используется для получения печатного текста из дочернего компонента
+  // получение печатного текста из дочернего компонента
   const getText = (textFromTextArea) => {
     setText(textFromTextArea)
   }
 
+  // проигрывание и остановка аудиозаписи
   const audio = new Audio('https://mp3minusovki.com/music/fhvndfjwserjgt/247bab1c312b2335afe3f5c9b496a3d3/6bad677b8e56574e16c632292cd219e0.mp3')
 
   const playMusic = () => {
@@ -144,48 +154,6 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const stopMusic = () => {
     audio.pause()
     audio.currentTime = 0
-  }
-
-  const doMagic = () => {
-    const url = 'https://garage-best-team-ever.tk/date_tags';
-
-    const now = new Date(Date.now());
-    let day = now.getDate();
-    if (day < 10)
-      day = '0' + day;
-    let month = now.getMonth() + 1;
-    if (month < 10)
-      month = '0' + month;
-    const year = now.getFullYear();
-    let hours = now.getHours();
-    if (hours < 10)
-    hours = '0' + hours;
-    let minutes = now.getMinutes();
-    if (minutes < 10)
-      minutes = '0' + minutes;
-    let seconds = now.getSeconds();
-    if (seconds < 10)
-      seconds = '0' + seconds;
-
-    const data = {
-      text_content: text,
-      current_date: year + '-' +  month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
-    }
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then((response) => {
-      return response.json()
-    })
-      .then((data) => {
-        console.log(data)
-        setNewTag(data.tag)
-        setTime(data.date_target)
-      })
   }
 
   return (
