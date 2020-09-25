@@ -132,6 +132,16 @@ const Task = ({ id, title, bodyTask, tags }) => {
     setText(textFromTextArea)
   }
 
+  const playMusic = () => {
+    const temp = document.getElementById('temp');
+    temp.innerHTML = "<iframe src='./magic.mp3' allow='autoplay' hidden></iframe>";
+  }
+
+  const stopMusic = () => {
+    const temp = document.getElementById('temp');
+    temp.innerHTML = "";
+  }
+
   return (
     <div className={styles.TaskContainer} style={{display: !visible && "none"}}>
       <details>
@@ -170,6 +180,8 @@ const Task = ({ id, title, bodyTask, tags }) => {
           // Если теги переданы, то они рендерятся
           renderTags()
         }
+        <b className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic}>Магия</b>
+        <div id="temp"></div>
         <div className={styles.DelAndSave}>
           <button className={styles.DelIconContainer} onClick={saveTask}>
             <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
