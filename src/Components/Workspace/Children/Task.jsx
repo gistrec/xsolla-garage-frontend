@@ -78,9 +78,9 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
     })
       .then((data) => {
         console.log(data)
-        setNewTag(data.tag)
-        setTime(data.date_target)
         setTaskTitle(data.title)
+        setTime(data.date_target)
+        setNewTag(data.tag)
       })
   }
 
@@ -88,11 +88,10 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
     const api = '/task'
     const title = getTitle()
     const tags = mapTags(allTags)
-    setTime("2021-09-08 17:17:52");
-    let dateTarget = time;
+    let dateTarget = time
     if (typeof time === 'undefined' || time === '') {
-      setTime("2021-09-08 17:17:52");
-      dateTarget = "2021-09-08 17:17:52";
+      setTime(moment().add(1, 'days').startOf('hour').format('YYYY-MM-DD HH:mm:ss'))
+      dateTarget = moment().add(1, 'days').startOf('hour').format('YYYY-MM-DD HH:mm:ss')
     }
     const data = {
       user_id: 0,
