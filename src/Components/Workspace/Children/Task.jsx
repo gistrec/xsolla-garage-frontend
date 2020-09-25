@@ -88,7 +88,12 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
     const api = '/task'
     const title = getTitle()
     const tags = mapTags(allTags)
-    const dateTarget = time
+    setTime("2021-09-08 17:17:52");
+    let dateTarget = time;
+    if (typeof time === 'undefined' || time === '') {
+      setTime("2021-09-08 17:17:52");
+      dateTarget = "2021-09-08 17:17:52";
+    }
     const data = {
       user_id: 0,
       title: title,
@@ -96,6 +101,8 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
       date_target: dateTarget,
       tags: tags,
     }
+
+    console.log(data)
 
     fetch(url + api, {
       method: 'POST',
