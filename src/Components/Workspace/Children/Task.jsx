@@ -16,7 +16,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   const [newTag, setNewTag] = useState();
 
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState('2020-09-10 13:20:54');
 
   const [taskTitle, setTaskTitle] = useState('');
   useEffect(() => {
