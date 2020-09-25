@@ -80,6 +80,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
         console.log(data)
         setNewTag(data.tag)
         setTime(data.date_target)
+        setTaskTitle(data.title)
       })
   }
 
