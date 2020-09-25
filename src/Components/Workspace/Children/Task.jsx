@@ -5,7 +5,7 @@ import TextArea from './TextArea'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
-const Task = ({ id, title, bodyTask, tags }) => {
+const Task = ({ id, title, bodyTask, tags, open }) => {
   const url = 'https://garage-best-team-ever.tk'
 
   const [on, setOn] = useState(true)
@@ -14,17 +14,14 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [text, setText] = useState('')
   const [allTags, setAllTags] = useState([])
 
-  const [newTag, setNewTag] = useState();
+  const [newTag, setNewTag] = useState()
 
-  const [time, setTime] = useState('2020-09-10 13:20:54');
+  const [time, setTime] = useState('2020-09-10 13:20:54')
 
-  const [taskTitle, setTaskTitle] = useState('');
+  const [taskTitle, setTaskTitle] = useState('')
   useEffect(() => {
-    if (typeof title === 'undefined')
-      setTaskTitle('')
-    else
-      setTaskTitle(title)
-  }, []);
+    if (typeof title === 'undefined') { setTaskTitle('') } else { setTaskTitle(title) }
+  }, [])
 
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
@@ -44,7 +41,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
     return null
   }
 
-  function handleClick(e) {
+  function handleClick (e) {
     e.preventDefault()
     setOn(on => !on)
     if (on === true) {
@@ -82,11 +79,11 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const saveTask = () => {
     const api = '/task'
     const title = getTitle()
-    const tags = mapTags(allTags) //тэги преобразовываются из массива строк в массив объектов
+    const tags = mapTags(allTags) // тэги преобразовываются из массива строк в массив объектов
     const data = {
       user_id: 0,
-      title: title, //получает заголовок из задачи (первые три слова)
-      text_content: text.trim(), //пока что работает только для ввода с клавиатуры, обрезает последний символ
+      title: title, // получает заголовок из задачи (первые три слова)
+      text_content: text.trim(), // пока что работает только для ввода с клавиатуры, обрезает последний символ
       tags: tags
     }
 
@@ -106,7 +103,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
       method: 'DELETE'
     }).then(() => setVisible(false))
   }
-  
+
   // Здесь теги мапятся в массив объектов
   const mapTags = tags => {
     return tags.map(item => {
@@ -116,18 +113,11 @@ const Task = ({ id, title, bodyTask, tags }) => {
   }
 
   // Обрезает текст задачи, возвращает первые три слова + ...
-  function getTitle() {
+  function getTitle () {
     if (taskTitle === '') {
-      const bodyTitle = text.trim().split(" ", 3).join(" ");
-      if (bodyTitle.length > 20)
-          return bodyTitle.substring(0, 20) + "...";
-        else if (bodyTitle === text.trim())
-          return bodyTitle
-        else
-          return bodyTitle + "...";
-    }
-    else
-      return taskTitle;
+      const bodyTitle = text.trim().split(' ', 3).join(' ')
+      if (bodyTitle.length > 20) { return bodyTitle.substring(0, 20) + '...' } else if (bodyTitle === text.trim()) { return bodyTitle } else { return bodyTitle + '...' }
+    } else { return taskTitle }
   }
 
   // используется для получения печатного текста из дочернего компонента
@@ -147,29 +137,24 @@ const Task = ({ id, title, bodyTask, tags }) => {
   }
 
   const doMagic = () => {
-    const url = 'https://garage-best-team-ever.tk/date_tags';
+    const url = 'https://garage-best-team-ever.tk/date_tags'
 
-    const now = new Date(Date.now());
-    let day = now.getDate();
-    if (day < 10)
-      day = '0' + day;
-    let month = now.getMonth() + 1;
-    if (month < 10)
-      month = '0' + month;
-    const year = now.getFullYear();
-    let hours = now.getHours();
-    if (hours < 10)
-    hours = '0' + hours;
-    let minutes = now.getMinutes();
-    if (minutes < 10)
-      minutes = '0' + minutes;
-    let seconds = now.getSeconds();
-    if (seconds < 10)
-      seconds = '0' + seconds;
+    const now = new Date(Date.now())
+    let day = now.getDate()
+    if (day < 10) { day = '0' + day }
+    let month = now.getMonth() + 1
+    if (month < 10) { month = '0' + month }
+    const year = now.getFullYear()
+    let hours = now.getHours()
+    if (hours < 10) { hours = '0' + hours }
+    let minutes = now.getMinutes()
+    if (minutes < 10) { minutes = '0' + minutes }
+    let seconds = now.getSeconds()
+    if (seconds < 10) { seconds = '0' + seconds }
 
     const data = {
       text_content: text,
-      current_date: year + '-' +  month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+      current_date: year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
     }
 
     fetch(url, {
@@ -189,8 +174,8 @@ const Task = ({ id, title, bodyTask, tags }) => {
   }
 
   return (
-    <div className={styles.TaskContainer} style={{display: !visible && "none"}}>
-      <details>
+    <div className={styles.TaskContainer} style={{ display: !visible && 'none' }}>
+      <details open={open}>
         <summary className={styles.TaskTitleContainer}>
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
@@ -226,7 +211,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           // Если теги переданы, то они рендерятся
           renderTags()
         }
-        <button style={{fontFamily: 'Graphik', fontWeight: 600}} className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>МАГИЯ</button>
+        <button style={{ fontFamily: 'Graphik', fontWeight: 600 }} className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>МАГИЯ</button>
         <div id="temp"></div>
         <div className={styles.DelAndSave}>
           <button className={styles.DelIconContainer} onClick={saveTask}>
