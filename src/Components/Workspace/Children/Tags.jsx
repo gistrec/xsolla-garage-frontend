@@ -6,10 +6,10 @@ const Tags = props => {
   const [tags, setTags] = React.useState(props.tags)
 
   useEffect(() => {
-    console.log(props.magicTag)
-    if (typeof props.magicTag !== 'undefined' && props.magicTag !== '')
-      setTags([...tags, props.magicTag])
-      props.setAllTags(tags)
+    const magicTag = props.magicTag;
+    if (typeof magicTag !== 'undefined' && magicTag !== '' && tags.findIndex(tag => tag === magicTag) === -1)
+      setTags([...tags, magicTag])
+    props.setAllTags(tags)
   }, [props.magicTag])
   
   const removeTags = indexToRemove => {
@@ -19,7 +19,8 @@ const Tags = props => {
   const addTags = event => {
     event.preventDefault()
     if (input !== '') {
-      setTags([...tags, input])
+      if (tags.findIndex(tag => tag === input) === -1)
+        setTags([...tags, input])
     //props.selectedTags([...tags, input]) зачем это вообще здесь?
       event.target.reset()
       setInput("")

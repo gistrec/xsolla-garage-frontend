@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://garage-best-team-ever.tk/task`).then(data => data.json()).then(json => this.setState({ tasks: json }))
+    fetch(`https://garage-best-team-ever.tk/task`).then(data => data.json()).then(json => {this.setState({ tasks: json }); console.log(json) })
   }
 
   render() {

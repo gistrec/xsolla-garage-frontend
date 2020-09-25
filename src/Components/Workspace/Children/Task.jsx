@@ -5,7 +5,8 @@ import TextArea from './TextArea'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
-const Task = ({ id, title, bodyTask, tags, open }) => {
+const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
+
   const url = 'https://garage-best-team-ever.tk'
 
   const [on, setOn] = useState(true)
@@ -13,15 +14,17 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
   const { transcript, listening, resetTranscript } = useSpeechRecognition()
   const [text, setText] = useState('')
   const [allTags, setAllTags] = useState([])
+  const [newTag, setNewTag] = useState();
+  const [time, setTime] = useState('');
+  useEffect(() => setTime(dateTarget), [])
+  const [taskTitle, setTaskTitle] = useState('');
 
-  const [newTag, setNewTag] = useState()
-
-  const [time, setTime] = useState('2020-09-10 13:20:54')
-
-  const [taskTitle, setTaskTitle] = useState('')
   useEffect(() => {
-    if (typeof title === 'undefined') { setTaskTitle('') } else { setTaskTitle(title) }
-  }, [])
+    if (typeof title === 'undefined')
+      setTaskTitle('')
+    else
+      setTaskTitle(title)
+  }, []);
 
   // Айдишник задачи, помещаемый в state после рендера компонента
   const [taskId, setId] = useState(-1)
@@ -41,7 +44,7 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
     return null
   }
 
-  function handleClick (e) {
+  function handleClick(e) {
     e.preventDefault()
     setOn(on => !on)
     if (on === true) {
@@ -52,17 +55,19 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
     resetTranscript()
   }
 
-  /* const url = 'https://garage-analytical-back.herokuapp.com'
+  //------------------------------------
+  // CRUD + magic
+  //------------------------------------
 
-  const sendText = () => {
-    const api = '/date_tags'
-    const date = moment().format('YYYY-MM-DD HH:mm:ss')
+  const doMagic = () => {
+    const url = 'https://garage-best-team-ever.tk/date_tags';
+
     const data = {
-      text_content: transcript,
-      current_date: date
+      text_content: text,
+      current_date: ''
     }
 
-    fetch(url + api, {
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -73,19 +78,30 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
     })
       .then((data) => {
         console.log(data)
+        setTaskTitle(data.title)
+        setTime(data.date_target)
+        setNewTag(data.tag)
       })
-  } */
+  }
 
   const saveTask = () => {
     const api = '/task'
     const title = getTitle()
-    const tags = mapTags(allTags) // тэги преобразовываются из массива строк в массив объектов
+    const tags = mapTags(allTags)
+    let dateTarget = time
+    if (typeof time === 'undefined' || time === '') {
+      setTime(moment().add(1, 'days').startOf('hour').format('YYYY-MM-DD HH:mm:ss'))
+      dateTarget = moment().add(1, 'days').startOf('hour').format('YYYY-MM-DD HH:mm:ss')
+    }
     const data = {
       user_id: 0,
-      title: title, // получает заголовок из задачи (первые три слова)
-      text_content: text.trim(), // пока что работает только для ввода с клавиатуры, обрезает последний символ
-      tags: tags
+      title: title,
+      text_content: text.trim(),
+      date_target: dateTarget,
+      tags: tags,
     }
+
+    console.log(data)
 
     fetch(url + api, {
       method: 'POST',
@@ -104,7 +120,11 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
     }).then(() => setVisible(false))
   }
 
-  // Здесь теги мапятся в массив объектов
+  //------------------------------------
+  // Прочие функции
+  //------------------------------------
+
+  // маппинг тегов в массив объектов
   const mapTags = tags => {
     return tags.map(item => {
       const objItem = { name: item }
@@ -112,19 +132,27 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
     })
   }
 
-  // Обрезает текст задачи, возвращает первые три слова + ...
-  function getTitle () {
+  // получение заголовка из текста задачи
+  function getTitle() {
     if (taskTitle === '') {
-      const bodyTitle = text.trim().split(' ', 3).join(' ')
-      if (bodyTitle.length > 20) { return bodyTitle.substring(0, 20) + '...' } else if (bodyTitle === text.trim()) { return bodyTitle } else { return bodyTitle + '...' }
-    } else { return taskTitle }
+      const bodyTitle = text.trim().split(" ", 3).join(" ");
+      if (bodyTitle.length > 20)
+          return bodyTitle.substring(0, 20) + "...";
+        else if (bodyTitle === text.trim())
+          return bodyTitle
+        else
+          return bodyTitle + "...";
+    }
+    else
+      return taskTitle;
   }
 
-  // используется для получения печатного текста из дочернего компонента
+  // получение печатного текста из дочернего компонента
   const getText = (textFromTextArea) => {
     setText(textFromTextArea)
   }
 
+  // проигрывание и остановка аудиозаписи
   const audio = new Audio('https://mp3minusovki.com/music/fhvndfjwserjgt/247bab1c312b2335afe3f5c9b496a3d3/6bad677b8e56574e16c632292cd219e0.mp3')
 
   const playMusic = () => {
@@ -136,46 +164,9 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
     audio.currentTime = 0
   }
 
-  const doMagic = () => {
-    const url = 'https://garage-best-team-ever.tk/date_tags'
-
-    const now = new Date(Date.now())
-    let day = now.getDate()
-    if (day < 10) { day = '0' + day }
-    let month = now.getMonth() + 1
-    if (month < 10) { month = '0' + month }
-    const year = now.getFullYear()
-    let hours = now.getHours()
-    if (hours < 10) { hours = '0' + hours }
-    let minutes = now.getMinutes()
-    if (minutes < 10) { minutes = '0' + minutes }
-    let seconds = now.getSeconds()
-    if (seconds < 10) { seconds = '0' + seconds }
-
-    const data = {
-      text_content: text,
-      current_date: year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
-    }
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then((response) => {
-      return response.json()
-    })
-      .then((data) => {
-        console.log(data)
-        setNewTag(data.tag)
-        setTime(data.date_target)
-      })
-  }
-
   return (
-    <div className={styles.TaskContainer} style={{ display: !visible && 'none' }}>
-      <details open={open}>
+    <div className={styles.TaskContainer} style={{display: !visible && "none"}}>
+      <details>
         <summary className={styles.TaskTitleContainer}>
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox}/>
@@ -211,8 +202,8 @@ const Task = ({ id, title, bodyTask, tags, open }) => {
           // Если теги переданы, то они рендерятся
           renderTags()
         }
-        <button style={{ fontFamily: 'Graphik', fontWeight: 600 }} className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>МАГИЯ</button>
-        <div id="temp"></div>
+        <button style={{fontFamily: 'Graphik', fontWeight: 600}} className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>МАГИЯ</button>
+        <div id="temp"></div
         <div className={styles.DelAndSave}>
           <button className={styles.DelIconContainer} onClick={saveTask}>
             <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
