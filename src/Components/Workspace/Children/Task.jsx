@@ -203,7 +203,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
           renderTags()
         }
         <button style={{fontFamily: 'Graphik', fontWeight: 600}} className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>МАГИЯ</button>
-        <div id="temp"></div
+        <div id="temp"></div>
         <div className={styles.DelAndSave}>
           <button className={styles.DelIconContainer} onClick={saveTask}>
             <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
