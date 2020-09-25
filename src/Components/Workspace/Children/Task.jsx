@@ -14,6 +14,10 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [text, setText] = useState('')
   const [allTags, setAllTags] = useState([])
 
+  const [newTag, setNewTag] = useState();
+
+  const [time, setTime] = useState('');
+
   const [taskTitle, setTaskTitle] = useState('');
   useEffect(() => {
     if (typeof title === 'undefined')
@@ -28,7 +32,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   // Рендерит теги только если они есть
   const renderTags = () => {
-    if (typeof tags !== 'undefined') { return (<Tags tags={tags.map(tag => tag.name)} setAllTags={setAllTags}/>) }
+    if (typeof tags !== 'undefined') { return (<Tags tags={tags.map(tag => tag.name)} setAllTags={setAllTags} magicTag={newTag}/>) }
   }
 
   // Распознанная речь рендерится только в том таске, для которого включена запись
@@ -113,7 +117,6 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   // Обрезает текст задачи, возвращает первые три слова + ...
   function getTitle() {
-    console.log(taskTitle)
     if (taskTitle === '') {
       const bodyTitle = text.trim().split(" ", 3).join(" ");
       if (bodyTitle.length > 20)
@@ -134,12 +137,54 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   const playMusic = () => {
     const temp = document.getElementById('temp');
-    temp.innerHTML = "<iframe src='./magic.mp3' allow='autoplay' hidden></iframe>";
+    temp.innerHTML = "<iframe src='https://www.dropbox.com/s/3m5yhjl05ikk1eo/magic.mp3?raw=1' type='audio/mpeg' allow='autoplay' hidden></iframe>";
   }
 
   const stopMusic = () => {
     const temp = document.getElementById('temp');
     temp.innerHTML = "";
+  }
+
+  const doMagic = () => {
+    const url = 'https://garage-best-team-ever.tk/date_tags';
+
+    const now = new Date(Date.now());
+    let day = now.getDate();
+    if (day < 10)
+      day = '0' + day;
+    let month = now.getMonth() + 1;
+    if (month < 10)
+      month = '0' + month;
+    const year = now.getFullYear();
+    let hours = now.getHours();
+    if (hours < 10)
+    hours = '0' + hours;
+    let minutes = now.getMinutes();
+    if (minutes < 10)
+      minutes = '0' + minutes;
+    let seconds = now.getSeconds();
+    if (seconds < 10)
+      seconds = '0' + seconds;
+
+    const data = {
+      text_content: text,
+      current_date: year + '-' +  month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    }
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    })
+      .then((data) => {
+        console.log(data)
+        setNewTag(data.tag)
+        setTime(data.date_target)
+      })
   }
 
   return (
@@ -151,7 +196,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
             <div className={styles.TitleDataWrapper}>
               <input maxLength="100" placeholder="Добавьте название задачи" className={styles.Title} value={taskTitle}
                 onChange={(e) => setTaskTitle(e.target.value)}/>
-              <time>2020-09-20, 12:00</time>
+              <time>{time}</time>
             </div>
           </div>
           <div className={styles.Icons}>
@@ -180,7 +225,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           // Если теги переданы, то они рендерятся
           renderTags()
         }
-        <b className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic}>Магия</b>
+        <b className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>Магия</b>
         <div id="temp"></div>
         <div className={styles.DelAndSave}>
           <button className={styles.DelIconContainer} onClick={saveTask}>

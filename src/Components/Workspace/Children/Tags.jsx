@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './TagsStyles.module.css'
 
 const Tags = props => {
   const [input, setInput] = React.useState('')
   const [tags, setTags] = React.useState(props.tags)
+
+  useEffect(() => {
+    console.log(props.magicTag)
+    if (typeof props.magicTag !== 'undefined' && props.magicTag !== '')
+      setTags([...tags, props.magicTag])
+      props.setAllTags(tags)
+  }, [props.magicTag])
   
   const removeTags = indexToRemove => {
     setTags([...tags.filter((_, index) => index !== indexToRemove)])
