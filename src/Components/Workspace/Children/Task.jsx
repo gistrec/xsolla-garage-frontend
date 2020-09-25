@@ -5,7 +5,7 @@ import TextArea from './TextArea'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import moment from 'moment'
 
-const Task = ({ id, title, bodyTask, tags }) => {
+const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
 
   const url = 'https://garage-best-team-ever.tk'
 
@@ -16,6 +16,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
   const [allTags, setAllTags] = useState([])
   const [newTag, setNewTag] = useState();
   const [time, setTime] = useState('');
+  useEffect(() => setTime(dateTarget), [])
   const [taskTitle, setTaskTitle] = useState('');
 
   useEffect(() => {

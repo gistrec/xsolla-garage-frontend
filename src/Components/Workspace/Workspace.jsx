@@ -23,7 +23,7 @@ const Workspace = ({ tasks }) => {
       <SearchBar />
       {task()}
       {tasks.map(task => (
-        <Task key={task.id} id={task.id} title={task.title} bodyTask={task.text_content} tags={task.tags} />
+        <Task key={task.id} id={task.id} title={task.title} bodyTask={task.text_content} tags={task.tags} dateTarget={task.date_target} />
       ))}
     </div>
   )
