@@ -137,7 +137,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
 
   const playMusic = () => {
     const temp = document.getElementById('temp');
-    temp.innerHTML = "<iframe src='https://www.dropbox.com/s/3m5yhjl05ikk1eo/magic.mp3?raw=1' type='audio/mpeg' allow='autoplay' hidden></iframe>";
+    temp.innerHTML = "<iframe src='https://mp3minusovki.com/music/fhvndfjwserjgt/247bab1c312b2335afe3f5c9b496a3d3/6bad677b8e56574e16c632292cd219e0.mp3' type='audio/mpeg' allow='autoplay' hidden></iframe>";
   }
 
   const stopMusic = () => {
