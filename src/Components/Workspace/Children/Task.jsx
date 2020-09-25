@@ -135,14 +135,15 @@ const Task = ({ id, title, bodyTask, tags }) => {
     setText(textFromTextArea)
   }
 
+  const audio = new Audio('https://mp3minusovki.com/music/fhvndfjwserjgt/247bab1c312b2335afe3f5c9b496a3d3/6bad677b8e56574e16c632292cd219e0.mp3')
+
   const playMusic = () => {
-    const temp = document.getElementById('temp');
-    temp.innerHTML = "<iframe src='https://mp3minusovki.com/music/fhvndfjwserjgt/247bab1c312b2335afe3f5c9b496a3d3/6bad677b8e56574e16c632292cd219e0.mp3' type='audio/mpeg' allow='autoplay' hidden></iframe>";
+    audio.play()
   }
 
   const stopMusic = () => {
-    const temp = document.getElementById('temp');
-    temp.innerHTML = "";
+    audio.pause()
+    audio.currentTime = 0
   }
 
   const doMagic = () => {
@@ -225,7 +226,7 @@ const Task = ({ id, title, bodyTask, tags }) => {
           // Если теги переданы, то они рендерятся
           renderTags()
         }
-        <b className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>Магия</b>
+        <button style={{fontFamily: 'Graphik', fontWeight: 600}} className={styles.magic} onMouseEnter={playMusic} onMouseLeave={stopMusic} onClick={doMagic}>МАГИЯ</button>
         <div id="temp"></div>
         <div className={styles.DelAndSave}>
           <button className={styles.DelIconContainer} onClick={saveTask}>
