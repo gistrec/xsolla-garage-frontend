@@ -5,16 +5,14 @@ import Task from './Children/Task'
 import SearchBar from './Children/SearchBar'
 
 const Workspace = ({ tasks }) => {
+  const [isOpen, setOpen] = useState(false)
 
-  const [isOpen, setOpen] = useState(false);
-
-  let task = () => {
-    if (isOpen)
-      return <Task tags={[]} />
+  const task = () => {
+    if (isOpen) { return <Task tags={[]} open={isOpen} /> }
   }
 
   const renderTask = () => {
-    setOpen(true);
+    setOpen(true)
   }
 
   return (
