@@ -10,7 +10,7 @@ const Workspace = ({ tasks }) => {
 
   let task = () => {
     if (isOpen)
-      return <Task tags={[]}/>
+      return <Task tags={[]} />
   }
 
   const renderTask = () => {
@@ -18,15 +18,13 @@ const Workspace = ({ tasks }) => {
   }
 
   return (
-    <div>
-      <div className={styles.workspace}>
-        <WorkspaceHeader onClick={renderTask}/>
-        <SearchBar/>
-        {task()}
-        {tasks.map(task => (
-          <Task key={task.id} id={task.id} title={task.title} bodyTask={task.text_content} tags={task.tags}/>
-        ))}
-      </div>
+    <div className={styles.workspace}>
+      <WorkspaceHeader onClick={renderTask} />
+      <SearchBar />
+      {task()}
+      {tasks.map(task => (
+        <Task key={task.id} id={task.id} title={task.title} bodyTask={task.text_content} tags={task.tags} />
+      ))}
     </div>
   )
 }
