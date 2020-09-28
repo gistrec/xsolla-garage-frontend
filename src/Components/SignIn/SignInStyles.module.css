@@ -28,7 +28,11 @@ html, body {
 
 .logoAndTitle {
     display: flex;
+    margin-bottom: 15px;
+}
 
+.logoAndTitle svg {
+    padding-top: 5px;
 }
 
 .container h1 {
@@ -39,7 +43,7 @@ html, body {
 .googleBtn {
     padding: 0;
     border: none;
-    width: 240px;
+    width: 250px;
     height: 53px;
     border-radius: 4px;
     background-color: #0073F7;
