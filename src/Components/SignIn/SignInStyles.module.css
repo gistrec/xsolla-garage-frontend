@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "Sharp Grotesk Medium 20";
+    src: url("https://db.onlinewebfonts.com/t/ff43ca80668e47a1b1208ba9aed65ad2.eot"); /* IE9*/
+    src: url("https://db.onlinewebfonts.com/t/ff43ca80668e47a1b1208ba9aed65ad2.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://db.onlinewebfonts.com/t/ff43ca80668e47a1b1208ba9aed65ad2.woff2") format("woff2"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/ff43ca80668e47a1b1208ba9aed65ad2.woff") format("woff"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/ff43ca80668e47a1b1208ba9aed65ad2.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("https://db.onlinewebfonts.com/t/ff43ca80668e47a1b1208ba9aed65ad2.svg#Sharp Grotesk Medium 20") format("svg"); /* iOS 4.1- */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.logoContainer {
+    display: flex;   
+    justify-content: center;
+}
+
+.logoContainer h1 {
+    padding-left: 30px;
+    font-family: "Sharp Grotesk Medium 20", sans-serif;
+}
+
+.googleBtn {
+    padding: 0;
+    border: none;
+    width: 240px;
+    height: 60px;
+    border-radius: 4px;
+    background-color: #0073F7;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    cursor: pointer;
+}
+
+.googleBtn:hover {
+    background: #004df0;
+}
+
+.googleBtn:focus {
+    outline: none;
+}
+
+.googleBtn svg {
+    padding: 3px 0 3px 7px;
+}
+
+.googleBtn div {
+    width: 100%;
+    height: 100%;
+    vertical-align: center;
+}
+
+.googleBtn p {
+    line-height: 30px;
+}
