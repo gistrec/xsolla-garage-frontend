@@ -15,12 +15,16 @@ html, body {
     box-sizing: border-box;
 }
 
-.logoContainer {
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
     display: flex;   
     justify-content: center;
 }
 
-.logoContainer h1 {
+.container h1 {
     padding-left: 30px;
     font-family: "Sharp Grotesk Medium 20", sans-serif;
 }
