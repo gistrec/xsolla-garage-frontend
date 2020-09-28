@@ -29,7 +29,7 @@ html, body {
     padding: 0;
     border: none;
     width: 240px;
-    height: 60px;
+    height: 53px;
     border-radius: 4px;
     background-color: #0073F7;
     color: #FFFFFF;
@@ -48,7 +48,7 @@ html, body {
 }
 
 .googleBtn svg {
-    padding: 3px 0 3px 7px;
+    padding-left: 4px;
 }
 
 .googleBtn div {
@@ -58,5 +58,5 @@ html, body {
 }
 
 .googleBtn p {
-    line-height: 30px;
+    line-height: 22px;
 }
