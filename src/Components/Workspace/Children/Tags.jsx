@@ -9,6 +9,7 @@ const Tags = props => {
 
   useEffect(() => {
     const magicTag = props.magicTag;
+    postTag(magicTag)
     if (typeof magicTag !== 'undefined' && magicTag !== '' && tags.findIndex(tag => tag.name === magicTag) === -1)
       setTags([...tags, {name: magicTag}])
     props.setAllTags(tags)
@@ -21,22 +22,38 @@ const Tags = props => {
       tag_id: idTag
     }
 
-    console.log(uri + api)
-
     fetch(uri + api, {
       method: 'DELETE',
       body: JSON.stringify(data)
-    }).then(response => console.log(response)).catch(e => console.log(e))
+    });
   }
 
   const removeTags = (idTag, indexToRemove) => {
-    console.log(idTag)
     deleteTag(idTag)
     setTags([...tags.filter((_, index) => index !== indexToRemove)])
   }
 
+  const postTag = nameTag => {
+    const api = `/tag`;
+    const data = {
+      task_id: props.idTask,
+      tags: [{
+        name: nameTag
+      }]
+    }
+
+    fetch(uri + api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  }
+
   const addTags = event => {
     event.preventDefault()
+    postTag(input)
     if (input !== '') {
       if (tags.findIndex(tag => tag.name === input) === -1)
         setTags([...tags, {name: input}])

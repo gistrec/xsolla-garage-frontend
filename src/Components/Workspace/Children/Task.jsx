@@ -105,8 +105,6 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew }) => {
       tags: tags
     }
 
-    console.log(data)
-
     fetch(url + api, {
       method: 'POST',
       headers: {
