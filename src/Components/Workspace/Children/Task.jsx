@@ -35,7 +35,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew }) => {
   // Рендерит теги только если они есть
   const renderTags = () => {
     if (typeof tags !== 'undefined') { 
-      return (<Tags tags={tags} setAllTags={setAllTags} magicTag={newTag} idTask = {id}/>) 
+      return (<Tags tags={tags} setAllTags={setAllTags} magicTag={newTag} idTask = {id} editMode={editMode}/>) 
     }
   }
 
