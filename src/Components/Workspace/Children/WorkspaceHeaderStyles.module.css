@@ -36,3 +36,30 @@
 .addTask:hover {
     background: #004df0;
 }
+
+.feedback {
+    text-decoration: none;
+}
+
+.feedback:visited {
+    color: white ;
+}
+
+.buttonFeedb {
+    width: 9em;
+    height: 3em;
+    background: #0073F7;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Graphik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.buttonFeedb:hover {
+    background: #004df0;
+}

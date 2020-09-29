@@ -3,12 +3,12 @@ import styles from './CalendarAndGreetingStyles.module.css'
 import CalendarReact from './CalendarReact'
 import Greeting from './Greeting'
 
-const CalendarAndGreeting = ({tasksCount}) => {
+const CalendarAndGreeting = ({ tasksCount }) => {
   useEffect(() => {
-    const now = document.getElementsByClassName('react-calendar__tile--now')[0];
-    now.style.background = '#0073F7';
-    now.style.color = 'white';
-    now.style.borderRadius = '50%';
+    const now = document.getElementsByClassName('react-calendar__tile--now')[0]
+    now.style.background = '#0073F7'
+    now.style.color = 'white'
+    now.style.borderRadius = '50%'
   })
 
   return (
