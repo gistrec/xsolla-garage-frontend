@@ -34,7 +34,9 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew }) => {
 
   // Рендерит теги только если они есть
   const renderTags = () => {
-    if (typeof tags !== 'undefined') { return (<Tags tags={tags.map(tag => tag.name)} setAllTags={setAllTags} magicTag={newTag} />) }
+    if (typeof tags !== 'undefined') { 
+      return (<Tags tags={tags} setAllTags={setAllTags} magicTag={newTag} idTask = {id}/>) 
+    }
   }
 
   // Распознанная речь рендерится только в том таске, для которого включена запись
