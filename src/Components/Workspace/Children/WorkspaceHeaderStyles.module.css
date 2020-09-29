@@ -39,6 +39,7 @@
 
 .feedback {
     text-decoration: none;
+    color: white ;
 }
 
 .feedback:visited {
