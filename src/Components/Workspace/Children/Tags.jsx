@@ -31,7 +31,8 @@ const Tags = props => {
   }
 
   const removeTags = (idTag, indexToRemove) => {
-    deleteTag(idTag)
+    if (typeof props.idTask !== 'undefined')
+      deleteTag(idTag)
     setTags([...tags.filter((_, index) => index !== indexToRemove)])
   }
 
@@ -56,7 +57,8 @@ const Tags = props => {
   const addTags = event => {
     event.preventDefault()
     const newTag = input.toLowerCase();
-    postTag(newTag)
+    if (typeof props.idTask !== 'undefined')
+      postTag(newTag)
     if (newTag !== '') {
       if (tags.findIndex(tag => tag.name === newTag) === -1)
         setTags([...tags, {name: newTag}])
