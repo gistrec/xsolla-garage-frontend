@@ -99,7 +99,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
       title: title,
       text_content: text.trim(),
       date_target: dateTarget,
-      tags: tags,
+      tags: tags
     }
 
     console.log(data)
@@ -111,6 +111,31 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
       },
       body: JSON.stringify(data)
     }).then(() => setEditMode(false))
+  }
+
+  const updateTask = () => {
+    const api = `/task/${taskId}`
+    const title = getTitle() //новый title сохраняется
+    const tags = mapTags(allTags) //тэги не сохраняются
+    let dateTarget = time //дату нельзя редактировать - почему?
+    if (typeof time === 'undefined' || time === '') {
+      setTime(moment().add(1, 'days').startOf('hour').format('YYYY-MM-DD HH:mm:ss'))
+      dateTarget = moment().add(1, 'days').startOf('hour').format('YYYY-MM-DD HH:mm:ss')
+    }
+    const data = {
+      title: title,
+      text_content: text.trim(),
+      date_target: dateTarget,
+      tags: tags
+    }
+
+    fetch(url + api, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
   }
 
   const deleteTask = () => {
@@ -212,7 +237,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget }) => {
           <button style={{ fontFamily: 'Graphik', fontWeight: 600, display: !editMode && "none" }} className={styles.magic} /*onMouseEnter={playMusic} onMouseLeave={stopMusic}*/ onClick={doMagic}>МАГИЯ</button>
         </div>
         <div className={styles.DelAndSave}>
-          <button className={styles.DelIconContainer} style={{ display: !editMode && "none" }} onClick={saveTask}>
+          <button className={styles.DelIconContainer} style={{ display: !editMode && "none" }} onClick={editMode ? updateTask : saveTask}>
             <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A" />
             </svg>
