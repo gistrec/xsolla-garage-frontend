@@ -126,8 +126,8 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew }) => {
     const data = {
       title: title,
       text_content: text.trim(),
-      date_target: dateTarget,
-      tags: tags
+      date_target: dateTarget/*,
+      tags: tags.map(tag => {return tag.name})*/
     }
 
     fetch(url + api, {
