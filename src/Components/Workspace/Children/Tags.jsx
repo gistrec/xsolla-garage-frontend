@@ -8,7 +8,9 @@ const Tags = props => {
   const [tags, setTags] = React.useState(props.tags)
 
   useEffect(() => {
-    const magicTag = props.magicTag;
+    if (typeof props.magicTag === 'undefined')
+      return;
+    const magicTag = props.magicTag.toLowerCase();
     postTag(magicTag)
     if (typeof magicTag !== 'undefined' && magicTag !== '' && tags.findIndex(tag => tag.name === magicTag) === -1)
       setTags([...tags, {name: magicTag}])
@@ -53,10 +55,11 @@ const Tags = props => {
 
   const addTags = event => {
     event.preventDefault()
-    postTag(input)
-    if (input !== '') {
-      if (tags.findIndex(tag => tag.name === input) === -1)
-        setTags([...tags, {name: input}])
+    const newTag = input.toLowerCase();
+    postTag(newTag)
+    if (newTag !== '') {
+      if (tags.findIndex(tag => tag.name === newTag) === -1)
+        setTags([...tags, {name: newTag}])
     //props.selectedTags([...tags, input]) зачем это вообще здесь?
       event.target.reset()
       setInput("")
@@ -69,7 +72,7 @@ const Tags = props => {
         {tags.map((tag, index) => (
           <li key={index} className={styles.tag}>
             <span className={styles.tagTitle}>{tag.name}</span>
-            <span className={styles.tagRemoveIcon} onClick={() => { console.log(tag); removeTags(tag.id, index)}}>x</span>
+            <span className={styles.tagRemoveIcon} onClick={() => removeTags(tag.id, index)}>x</span>
             {props.setAllTags(tags) /*здесь теги передаются в родительский компонент*/}
           </li>
         ))}
