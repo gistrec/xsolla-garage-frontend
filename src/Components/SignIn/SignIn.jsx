@@ -1,10 +1,5 @@
 import React from 'react'
 import styles from './SignInStyles.module.css'
-import GoogleLogin from 'react-google-login'
-
-const responseGoogle = (response) => {
-    console.log(response)
-}
 
 const SignIn = () => {
     return (
@@ -19,10 +14,7 @@ const SignIn = () => {
                     <h1>THE BEST PLANNER EVER</h1>
                 </div>
 
-                <GoogleLogin
-                    clientId="574484498021-l0tqmv2jfa9t9akmsruutva6sd0824a6.apps.googleusercontent.com"
-                    render={renderProps => (
-                        <button className={styles.googleBtn} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                        <button className={styles.googleBtn}>
                             <svg width="48" height="53" viewBox="0 0 48 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="48" height="53" fill="white" />
                                 <path d="M15.427 29.5251L14.4176 33.2935L10.728 33.3715C9.62543 31.3264 9 28.9865 9 26.5C9 24.0955 9.58476 21.8281 10.6213 19.8316L13.9068 20.4338L15.3457 23.6988C15.0445 24.5768 14.8804 25.5193 14.8804 26.5C14.8805 27.5644 15.0733 28.5842 15.427 29.5251Z" fill="#FBBB00" />
@@ -30,14 +22,8 @@ const SignIn = () => {
                                 <path d="M32.5768 37.8068L32.5776 37.8076C30.0927 39.8049 26.9362 41 23.5 41C17.978 41 13.1771 37.9136 10.728 33.3716L15.427 29.5251C16.6515 32.7932 19.8041 35.1196 23.5 35.1196C25.0886 35.1196 26.5769 34.6901 27.854 33.9404L32.5768 37.8068Z" fill="#28B446" />
                                 <path d="M32.7553 15.3382L28.0579 19.1838C26.7362 18.3577 25.1738 17.8804 23.5 17.8804C19.7204 17.8804 16.5089 20.3135 15.3457 23.6988L10.6221 19.8316H10.6213C13.0345 15.1788 17.896 12 23.5 12C27.0182 12 30.2441 13.2532 32.7553 15.3382Z" fill="#F14336" />
                             </svg>
-                            <div><p>Войти через Google</p></div>
+                            <a href="https://garage-best-team-ever.tk/google-auth">Войти через Google</a>
                         </button>
-                    )}
-                    buttonText="Login"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
             </div>
             <svg position="fixed" top="0" bottom="0" left="0" right="0" viewBox="0 0 1440 933" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1440 0V482C1380.04 384.135 1389.53 342.79 1388.03 309.82C1386.83 283.443 1373.54 263.591 1367.05 256.962C1347.73 246.495 1303.89 223.154 1283.1 213.524C1257.12 201.488 1225.14 225.561 1169.17 241.262C1113.21 256.962 1023.26 256.962 969.299 225.561C915.333 194.161 875.359 160.667 808.401 82.6884C754.835 20.3058 682.481 1.57003 653 0H1440Z" fill="#0073F7" fillOpacity="0.5" />
