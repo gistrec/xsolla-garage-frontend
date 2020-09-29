@@ -15,6 +15,10 @@ html, body {
     box-sizing: border-box;
 }
 
+.abstractShapes {
+    min-width: 1200px;
+}
+
 .container {
     position: absolute;
     top: 50%;
@@ -24,11 +28,12 @@ html, body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    min-width: 500px;
 }
 
 .logoAndTitle {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .logoAndTitle svg {
@@ -37,7 +42,9 @@ html, body {
 
 .container h1 {
     padding-left: 30px;
+    padding-top: 22px;
     font-family: "Sharp Grotesk Medium 20", sans-serif;
+    font-size: 32px;
 }
 
 .googleBtn {
@@ -63,14 +70,15 @@ html, body {
 }
 
 .googleBtn svg {
-    padding-left: 4px;
+    padding-left: 6px;
 }
 
 .googleBtn a {
     width: 100%;
     height: 100%;
     vertical-align: center;
-    padding-top: 17px;
+    padding-top: 15px;
     color: white;
     text-decoration: none;
+    font-size: 16px;
 }

@@ -199,7 +199,7 @@ button:focus {
     background: none;
 }
 
-svg:hover path {
+.Icon svg:hover path {
     fill: #424242;
 }
 
