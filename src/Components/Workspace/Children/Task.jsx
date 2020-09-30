@@ -189,7 +189,15 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
             <input type="checkbox" className={styles.Checkbox} />
             <div className={styles.TitleDataWrapper}>
               <input maxLength="100" placeholder="Добавьте название задачи" className={styles.Title} value={taskTitle}
-                onChange={(e) => setTaskTitle(e.target.value)} />
+                onChange={(e) => {
+                  if (!editMode)
+                    {
+                      e.preventDefault();
+                      return;
+                    }
+                  else
+                    setTaskTitle(e.target.value)
+                }} />
               <time>{time}</time>
             </div>
           </div>
@@ -217,7 +225,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
             </button>
           </div>
         </summary>
-        <TextArea defaultText={bodyTask} text={renderTranscript} isListening={listening} getText={getText} />
+        <TextArea defaultText={bodyTask} text={renderTranscript} isListening={listening} getText={getText} editMode={editMode} />
       </details>
       <div className={styles.TaskActions}>
         {

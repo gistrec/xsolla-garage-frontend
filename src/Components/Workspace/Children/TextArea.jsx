@@ -39,6 +39,12 @@ const TextArea = (props) => {
         <textarea className={styles.TaskInput} value={text} 
             onChange={
                 (e) => {
+                    if (!props.editMode)
+                    {
+                      e.preventDefault();
+                      return;
+                    }
+
                     if (!props.isListening) {    
                         props.getText(e.target.value);                    
                         setText(e.target.value)
