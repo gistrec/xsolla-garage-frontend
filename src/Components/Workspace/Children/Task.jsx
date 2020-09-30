@@ -10,6 +10,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
 
   const [on, setOn] = useState(true)
   const [visible, setVisible] = useState(true)
+  const [isNewTask, setIsNewTask] = useState(false);
   const [editMode, setEditMode] = useState(false)
   useEffect(() => setEditMode(isNew), [])
   const { transcript, listening, resetTranscript } = useSpeechRecognition()
@@ -77,8 +78,8 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
       return response.json()
     })
       .then((data) => {
-        console.log(data)
-        setTaskTitle(data.title)
+        if (taskTitle === '')
+          setTaskTitle(data.title)
         setTime(data.date_target)
         setNewTag(data.tag)
       })
