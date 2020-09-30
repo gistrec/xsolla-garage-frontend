@@ -1,26 +1,67 @@
 import React, { useEffect } from 'react'
 import styles from './TagsStyles.module.css'
 
+const uri = 'https://garage-best-team-ever.tk'
+
 const Tags = props => {
   const [input, setInput] = React.useState('')
   const [tags, setTags] = React.useState(props.tags)
 
   useEffect(() => {
-    const magicTag = props.magicTag;
-    if (typeof magicTag !== 'undefined' && magicTag !== '' && tags.findIndex(tag => tag === magicTag) === -1)
-      setTags([...tags, magicTag])
+    if (typeof props.magicTag === 'undefined')
+      return;
+    const magicTag = props.magicTag.toLowerCase();
+    postTag(magicTag)
+    if (typeof magicTag !== 'undefined' && magicTag !== '' && tags.findIndex(tag => tag.name === magicTag) === -1)
+      setTags([...tags, {name: magicTag}])
     props.setAllTags(tags)
   }, [props.magicTag])
   
-  const removeTags = indexToRemove => {
+  const deleteTag = idTag => {
+    const api = `/tag`;
+    const data = {
+      task_id: props.idTask,
+      tag_id: idTag
+    }
+
+    fetch(uri + api, {
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    });
+  }
+
+  const removeTags = (idTag, indexToRemove) => {
+    if (typeof props.idTask !== 'undefined')
+      deleteTag(idTag)
     setTags([...tags.filter((_, index) => index !== indexToRemove)])
+  }
+
+  const postTag = nameTag => {
+    const api = `/tag`;
+    const data = {
+      task_id: props.idTask,
+      tags: [{
+        name: nameTag
+      }]
+    }
+
+    fetch(uri + api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
   }
 
   const addTags = event => {
     event.preventDefault()
-    if (input !== '') {
-      if (tags.findIndex(tag => tag === input) === -1)
-        setTags([...tags, input])
+    const newTag = input.toLowerCase();
+    if (typeof props.idTask !== 'undefined')
+      postTag(newTag)
+    if (newTag !== '') {
+      if (tags.findIndex(tag => tag.name === newTag) === -1)
+        setTags([...tags, {name: newTag}])
     //props.selectedTags([...tags, input]) зачем это вообще здесь?
       event.target.reset()
       setInput("")
@@ -32,14 +73,15 @@ const Tags = props => {
       <ul className={styles.tags}>
         {tags.map((tag, index) => (
           <li key={index} className={styles.tag}>
-            <span className={styles.tagTitle}>{tag}</span>
-            <span className={styles.tagRemoveIcon} onClick={() => removeTags(index)}>x</span>
+            <span className={styles.tagTitle}>{tag.name}</span>
+            <span className={styles.tagRemoveIcon} onClick={() => removeTags(tag.id, index)}>x</span>
             {props.setAllTags(tags) /*здесь теги передаются в родительский компонент*/}
           </li>
         ))}
         <form className={styles.addTag} onSubmit={event => addTags(event)}>
-          <button className={styles.addTagButton} type={'submit'}>+</button>
-          <input type="text" maxLength="30" placeholder="Добавьте тег" onChange={e => setInput(e.target.value)}/>
+          <button className={styles.addTagButton} type={'submit'} style={{ display: !props.editMode && "none" }}>+</button>
+          <input type="text" maxLength="30" placeholder="Добавьте тег" onChange={e => setInput(e.target.value)} 
+            style={{ display: !props.editMode && "none" }}/>
         </form>
       </ul>
     </div>
