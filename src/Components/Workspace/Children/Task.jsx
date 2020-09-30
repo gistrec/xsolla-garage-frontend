@@ -11,6 +11,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
   const [on, setOn] = useState(true)
   const [visible, setVisible] = useState(true)
   const [isNewTask, setIsNewTask] = useState(false);
+  useEffect(() => setIsNewTask(isNew), [])
   const [editMode, setEditMode] = useState(false)
   useEffect(() => setEditMode(isNew), [])
   const { transcript, listening, resetTranscript } = useSpeechRecognition()
@@ -117,10 +118,14 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then(() => setEditMode(false))
+    })
+      .then(() => setEditMode(false))
+      .then(() => setIsNewTask(false))
   }
 
   const updateTask = () => {
+    if (typeof taskId === 'undefined')
+      return;
     const api = `/task/${taskId}`
     const title = getTitle() //новый title сохраняется
     const tags = mapTags(allTags) //тэги не сохраняются
@@ -252,7 +257,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
           <button style={{ fontFamily: 'Graphik', fontWeight: 600, display: !editMode && "none" }} className={styles.magic} /*onMouseEnter={playMusic} onMouseLeave={stopMusic}*/ onClick={doMagic}>МАГИЯ</button>
         </div>
         <div className={styles.DelAndSave}>
-          <button className={styles.DelIconContainer} style={{ display: !editMode && "none" }} onClick={isNew ? saveTask : updateTask}>
+          <button className={styles.DelIconContainer} style={{ display: !editMode && "none" }} onClick={isNewTask ? saveTask : updateTask}>
             <svg className={styles.Icon + ' ' + styles.IconBottom + ' ' + styles.IconSave} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M5,21h14c1.104,0,2-0.896,2-2V8l-5-5H5C3.896,3,3,3.896,3,5v14C3,20.104,3.896,21,5,21z M7,5h4v2h2V5h2v4h-1h-1h-2H9H7V5z M7,13h10v6h-2H9H7V13z" fill="#747E8A" />
             </svg>
