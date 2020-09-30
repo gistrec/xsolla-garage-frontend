@@ -199,7 +199,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
 
   return (
     <div className={styles.TaskContainer} style={{ display: !visible && 'none' }}>
-      <details open={open || editMode}>
+      <details open={open || editMode} onKeyUp={checkSpace}>
         <summary className={styles.TaskTitleContainer}>
           <div className={styles.CheckboxTitleWrapper}>
             <input type="checkbox" className={styles.Checkbox} />
