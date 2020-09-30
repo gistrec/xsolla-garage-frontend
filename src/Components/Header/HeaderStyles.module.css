@@ -44,11 +44,11 @@
 }
 
 .headerInfoBell {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .headerInfoBell:hover {
-    fill: #3e3e3e;
+    fill: #424242;
 }
 
 .headerInfoName {
@@ -57,6 +57,17 @@
     font-weight: bold;
     font-size: 1.1em;
     color: #00244D;
+}
+
+.logout {
+    cursor: pointer;
+    background: none;
+    border: none;
+    height: 24px;
+}
+
+.logout svg:hover path {
+    fill: #424242;
 }
 
 /*@media screen and (max-width: 1000px) {
