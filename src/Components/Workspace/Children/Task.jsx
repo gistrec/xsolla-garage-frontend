@@ -148,6 +148,7 @@ const Task = ({ id, title, bodyTask, tags, dateTarget, isNew, open }) => {
       },
       body: JSON.stringify(data)
     })
+      .then(() => setEditMode(false))
   }
 
   const deleteTask = () => {
