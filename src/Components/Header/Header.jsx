@@ -32,12 +32,6 @@ const Header = props => {
           buttonText="Выйти"
           onLogoutSuccess={onSuccess}
         />
-       {/* <button className={styles.logout} onClick={() => props.signOut()}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M12 16L16 12 12 8 12 11 2 11 2 13 12 13z" fill="#747E8A" />
-            <path d="M20,4c0-1.103-0.897-2-2-2h-8C8.897,2,8,2.897,8,4v5h2V4h8v16h-8v-5H8v5c0,1.103,0.897,2,2,2h8c1.103,0,2-0.897,2-2V4z" fill="#747E8A" />
-          </svg>
-  </button> */}
       </div>
 
     </header>
