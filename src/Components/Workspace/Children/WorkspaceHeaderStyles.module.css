@@ -31,6 +31,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #FFFFFF;
+    margin-right: 15px;
 }
 
 .addTask:hover {
@@ -38,7 +39,7 @@
 }
 
 .feedback {
-    padding: 10px 2.5em;
+    padding: 15px 2.5em;
     text-decoration: none;
     background: #0073F7;
     border-radius: 6px;
