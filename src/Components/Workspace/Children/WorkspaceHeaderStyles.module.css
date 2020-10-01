@@ -21,7 +21,7 @@
     height: 3em;
 
     background: #0073F7;
-    border-radius: 4px;
+    border-radius: 6px;
     border: none;
     cursor: pointer;
 
@@ -31,8 +31,32 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #FFFFFF;
+    margin-right: 15px;
 }
 
 .addTask:hover {
+    background: #004df0;
+}
+
+.feedback {
+    padding: 15px 2.5em;
+    text-decoration: none;
+    background: #0073F7;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Graphik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.feedback:visited {
+    color: white ;
+}
+
+.feedback:hover {
     background: #004df0;
 }
