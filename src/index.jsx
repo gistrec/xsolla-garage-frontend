@@ -5,4 +5,4 @@ import 'regenerator-runtime/runtime'
 import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-render(<Router><App /></Router>, document.getElementById('root'))
+render(<App />, document.getElementById('root'))
