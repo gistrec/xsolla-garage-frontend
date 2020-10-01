@@ -206,8 +206,9 @@ svg:hover path {
     fill: #424242;
 }
 
+/* Закомментила, т.к. пока нет адаптивной вёрстки */
 
-@media screen and (max-width: 917px) {
+/*@media screen and (max-width: 917px) {
     .Icon{
         width: 12px;
     }
@@ -224,5 +225,5 @@ svg:hover path {
         right: 2%;
     }
 
-}
+} */
 
