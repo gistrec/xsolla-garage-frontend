@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root'
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import SignIn from './Components/SignIn/SignIn'
 import Header from './Components/Header/Header'
 import SideHeader from './Components/GridComponents/SideHeader'
@@ -14,15 +14,20 @@ class App extends React.Component {
     super()
     this.state = {
       isSignedIn: false,
-      tasks: []
+      userName: '',
+      userPic: '',
+      tasks: [],
+      tasksCount: 0
     }
     this.signIn = this.signIn.bind(this)
     this.signOut = this.signOut.bind(this)
   }
 
-  signIn() {
+  signIn(userName, userPic) {
     this.setState({
-      isSignedIn: true
+      isSignedIn: true,
+      userName: userName,
+      userPic: userPic
     })
   }
 
@@ -33,7 +38,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://garage-best-team-ever.tk/task`).then(data => data.json()).then(json => { this.setState({ tasks: json }); console.log(json) })
+    fetch(`https://garage-best-team-ever.tk/task`).then(data => data.json()).then(json => { this.setState({ tasks: json, tasksCount: json.length }) })
   }
 
   render() {
@@ -48,11 +53,11 @@ class App extends React.Component {
         <Route exact path="/">
           <div className={styles.page}>
             <SideHeader />
-            <Header signOut={this.signOut} />
+            <Header signOut={this.signOut} userName={this.state.userName} userPic={this.state.userPic} />
             <SideHeader />
 
             <SideMain />
-            <SideBar tasksCount={tasksCount} />
+            <SideBar tasksCount={this.state.tasksCount} userName={this.state.userName} />
             <Workspace tasks={this.state.tasks} />
             <SideMain />
           </div>

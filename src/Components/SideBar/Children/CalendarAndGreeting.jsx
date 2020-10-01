@@ -3,7 +3,7 @@ import styles from './CalendarAndGreetingStyles.module.css'
 import CalendarReact from './CalendarReact'
 import Greeting from './Greeting'
 
-const CalendarAndGreeting = ({tasksCount}) => {
+const CalendarAndGreeting = props => {
   useEffect(() => {
     const now = document.getElementsByClassName('react-calendar__tile--now')[0];
     now.style.background = '#0073F7';
@@ -13,7 +13,7 @@ const CalendarAndGreeting = ({tasksCount}) => {
 
   return (
     <div className={styles.CalendarAndGreeting}>
-      <Greeting tasksCount={tasksCount}/>
+      <Greeting tasksCount={props.tasksCount} userName={props.userName}/>
       <CalendarReact/>
     </div>
   )

@@ -70,6 +70,12 @@
     fill: #424242;
 }
 
+.userPic {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
 /*@media screen and (max-width: 1000px) {
     .HeaderWrapper {
         margin: 0;
